@@ -11,7 +11,7 @@ Vue.use(Router);
 const params = {
     mode: 'history',
     routes: [{
-            path: '*',
+            path: '/tree',
             name: 'index',
             component: index
         },
@@ -22,6 +22,21 @@ const params = {
         }
     ]
 }
-
 const router = new Router(params);
 export default router;
+
+
+// export default router = new Router({
+//     mode: 'history',
+//     routes: [{
+//             path: '/tree',
+//             name: 'index',
+//             component: index
+//         },
+//         {
+//             path: '/network',
+//             name: 'network',
+//             component: network
+//         }
+//     ]
+// })

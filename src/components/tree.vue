@@ -64,12 +64,7 @@ export default {
       };
     }
   },
-  mounted() {
-    chart.on("click", function(params) {
-      debugger;
-      console.log(params);
-    });
-  },
+  mounted() {},
   methods: {}
 };
 </script>
