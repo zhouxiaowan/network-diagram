@@ -4,6 +4,7 @@ import Router from 'vue-router';
 
 import index from '@/components/index.vue';
 import network from '@/components/network.vue'
+import detailsCase from "@/components/detailsCase.vue"
 
 
 Vue.use(Router);
@@ -19,6 +20,11 @@ const params = {
             path: '/network',
             name: 'network',
             component: network
+        },
+        {
+            path: "/detailsCase",
+            name: "detailsCase",
+            component: detailsCase
         }
     ]
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="center-content">
     <div id="graph-container"></div>
-    <div class="block">
+    <!-- <div class="block">
       <span class="demonstration">置信度筛选</span>
       <el-slider v-model="degree" :step="10"></el-slider>
-    </div>
+    </div>-->
     <div class="node-introduced">节点详情：</div>
     <div class="line-introduced">边的信息是：</div>
   </div>
@@ -12,8 +12,6 @@
 <script>
 import ogma from "../assets/js/ogma2.7.4.min.js";
 import "../assets/css/font-awesome/css/font-awesome.min.css";
-import { debuglog } from "util";
-import { setTimeout } from "timers";
 export default {
   data() {
     return {
@@ -43,7 +41,7 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "http://172.21.39.76:5000/searchRelation"
+        url: "http://192.168.0.104:5000/searchRelation"
       })
         .then(res => {
           this.graph = res.data;
@@ -54,7 +52,6 @@ export default {
         .catch(err => {});
     },
     initOgma() {
-      var self = this;
       this.ogma = new Ogma({
         container: "graph-container",
         renderer: "canvas"
@@ -69,10 +66,14 @@ export default {
       this.initDefaultListeners();
     },
     initDefaultEage() {
+      //   console.log(shape.style);
       this.ogma.getEdges().setAttributes(
         {
           color: "#333",
-          width: 1
+          width: 1,
+          shape: {
+            // style: "dashed"
+          }
         },
         5000
       );
@@ -86,53 +87,26 @@ export default {
             content: this.ogma.rules.map({
               field: "type",
               values: {
-                part: "\uf013",
-                manufacturer: "\uf2c0",
-                device: "\uf2bd"
+                person: "\uf2c0",
+                case: "\uf0f6",
+                tel: "\uf095",
+                card: "\uf2c3",
+                factory: "\uf275"
               }
-            })
+            }),
+            color: "#fff"
           },
           color: this.ogma.rules.map({
             field: "type",
             values: {
-              part: "orange",
-              manufacturer: "limegreen",
-              device: "orangered"
+              person: "#1989fa"
             }
           }),
           text: {
             position: "bottom",
             content: function(node) {
-              var type = node.getData("type");
-
-              if (type === "device") {
-                return node.getData("name");
-              } else if (type === "part") {
-                return node.getData("part_type");
-              } else if (type === "manufacturer") {
-                return node.getData("name");
-              }
+              return node.getData("name");
             }
-          }
-        }
-      });
-      // 生成邻近节点的样式规则
-      this.ogma.styles.addRule({
-        nodeSelector: function(node) {
-          return node.getData("type") === "country";
-        },
-        nodeAttributes: {
-          image: function(node) {
-            return "../flags/" + node.getData("iso") + ".svg";
-          },
-          text: function(node) {
-            return node.getData("iso");
-          },
-          radius: function(node) {
-            return 5 + node.getData("nb_parts_produced");
-          },
-          innerStroke: {
-            color: "black"
           }
         }
       });
@@ -174,19 +148,19 @@ export default {
         },
         // or control the layer by layer as well
         2: {
-          level0: 0,
-          level1: 1,
-          level2: 2,
-          level3: 3,
-          level4: 4,
-          level5: 5,
-          level6: 6,
-          level7: 7,
-          level8: 8,
-          level9: 9,
-          level10: 10,
-          level11: 11,
-          levellast: 12
+          L0: 0,
+          L1: 1,
+          L2: 2,
+          L3: 3,
+          L4: 4,
+          L5: 5,
+          L6: 6,
+          L7: 7,
+          L8: 8,
+          L9: 9,
+          L10: 10,
+          L11: 11,
+          Last: 12
         }
       };
       this.ogma.getNodes().fillData("layer", null);
@@ -234,17 +208,8 @@ export default {
 </script>
 <style scoped>
 #graph-container {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  width: 80%;
-  height: 80%;
-  margin-top: 65px;
-  z-index: -1;
+  width: 100%;
+  height: 500px;
 }
 .line-introduced {
   position: absolute;
