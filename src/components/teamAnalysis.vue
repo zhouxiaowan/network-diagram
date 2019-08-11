@@ -162,7 +162,7 @@ export default {
 
     runLayout(options) {
       const self = this;
-      console.log(this.ogma.layouts);
+      //   console.log(this.ogma.layouts);
       this.ogma.layouts.hierarchical(options).then(function() {
         self.ogma.view.locateGraph({
           easing: "linear",

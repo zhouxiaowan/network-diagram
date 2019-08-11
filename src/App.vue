@@ -62,4 +62,7 @@ body {
 .nav .tac ul {
   height: 100%;
 }
+.el-menu-item {
+  text-align: left !important;
+}
 </style>

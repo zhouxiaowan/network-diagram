@@ -1,26 +1,41 @@
 <template>
   <div class="center-content">
+    <h2 class="team-title">团伙分析模型</h2>
     <div id="graph-container"></div>
     <!-- <div class="block">
       <span class="demonstration">置信度筛选</span>
       <el-slider v-model="degree" :step="10"></el-slider>
     </div>-->
-    <div class="node-introduced">节点详情：</div>
-    <div class="line-introduced">边的信息是：</div>
+    <div class="node-introduced" v-if="nodeinfo">
+      <p class="node-detaile">节点详情：</p>
+      <dataTableCase :nodeinfo="nodeinfo"></dataTableCase>
+    </div>
+    <div class="line-introduced" v-if="edgeinfo">
+      <p class="node-detaile">边的信息是：</p>
+      <dataGraphLine :edgeinfo="edgeinfo"></dataGraphLine>
+    </div>
   </div>
 </template>
 <script>
 import ogma from "../assets/js/ogma2.7.4.min.js";
 import "../assets/css/font-awesome/css/font-awesome.min.css";
+import dataTableCase from "./dataTableCase";
+import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
       graph: null,
-      degree: 0
+      degree: 0,
+      nodeinfo: null,
+      edgeinfo: null
     };
   },
   created() {
     this.initData();
+  },
+  components: {
+    dataTableCase,
+    dataGraphLine
   },
   watch: {
     degree() {
@@ -66,17 +81,28 @@ export default {
       this.initDefaultListeners();
     },
     initDefaultEage() {
-      //   console.log(shape.style);
-      this.ogma.getEdges().setAttributes(
-        {
-          color: "#333",
-          width: 1,
-          shape: {
-            // style: "dashed"
+      this.ogma.getEdges().forEach(edg => {
+        if (edg.getData("type")) {
+          if (edg.getData("type") === "dashed") {
+            edg.setAttributes({
+              shape: {
+                style: "dashed"
+              }
+            });
+          } else {
+            edg.setAttributes({
+              shape: {
+                style: "plain"
+              }
+            });
           }
-        },
-        5000
-      );
+        } else {
+          edg.setAttributes({
+            color: "#333",
+            width: 1
+          });
+        }
+      });
     },
     initDefaultNodes() {
       // 基本节点的样式规则
@@ -114,17 +140,39 @@ export default {
     // 添加事件
     initDefaultListeners() {
       const self = this;
-      const nodeIntroduced = document.getElementsByClassName("node-introduced")[0];
-      this.ogma.events.onClick(function(evt) {
+      this.ogma.events.onClick(evt => {
         if (evt.target && evt.target.isNode) {
-          //   self.ogma.removeNode(evt.target.getId());
-          nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
+          console.log("节点", evt);
+          this.nodeinfo = evt.target.getData();
+          // console.log(evt.target.getData());
+          //   this.$axios({
+          //     methods: "get",
+          //     url: "http://192.168.0.104:5000/nodeinfo"
+          //   })
+          //     .then(res => {
+          //       console.log(res.data.nodeDetail);
+          //     })
+          //     .catch({});
+          //   this.ogma.removeNode(evt.target.getId());
+          //   nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
         }
       });
-      const lineIntroduced = document.getElementsByClassName("line-introduced")[0];
-      this.ogma.events.onClick(function(evt) {
+      this.ogma.events.onClick(evt => {
         if (evt.target && !evt.target.isNode) {
-          lineIntroduced.innerHTML = "边的信息是：" + evt.target.getData().type;
+          console.log("边1", evt.target);
+          console.log("边2", evt.target);
+          const params = {
+            // source:evt.target
+            // target:
+          };
+          this.$axios({
+            methods: "get",
+            url: "http://192.168.0.104:5000/lineinfo"
+          })
+            .then(res => {
+              this.edgeinfo = res.data;
+            })
+            .catch({});
         }
       });
     },
@@ -138,52 +186,15 @@ export default {
         levelDistance: 50 // Number of pixels between each layer in the layout.
       };
 
-      var mode = 2;
-
-      var modes = {
-        // you can mix layering and roots/sinks definitions
-        1: {
-          Concept: 0,
-          Table: "sink"
-        },
-        // or control the layer by layer as well
-        2: {
-          L0: 0,
-          L1: 1,
-          L2: 2,
-          L3: 3,
-          L4: 4,
-          L5: 5,
-          L6: 6,
-          L7: 7,
-          L8: 8,
-          L9: 9,
-          L10: 10,
-          L11: 11,
-          Last: 12
-        }
-      };
       this.ogma.getNodes().fillData("layer", null);
       var sinks = [];
-      // check if it's a supported mode
-      if (mode in modes) {
-        var customLogic = modes["2"];
-        // pick the sinks first
-        sinks = this.ogma.getNodes().filter(function(node) {
-          var category = node.getData("categories")[0];
-          return customLogic[category] === "sink";
-        });
-        // now set the custom layering
-        this.ogma.getNodes().forEach(function(node) {
-          var category = node.getData("categories")[0];
 
-          var layer = customLogic[category];
-          if (typeof layer === "number") {
-            // save the layer in the node data
-            node.setData("layer", layer);
-          }
-        });
-      }
+      this.ogma.getNodes().forEach(function(node) {
+        var layer = node.getData("categories");
+        if (typeof layer === "number") {
+          node.setData("layer", layer);
+        }
+      });
       // create fresh new options
       var newOptions = {};
       for (var prop in defaultLayoutOptions) {
@@ -212,14 +223,8 @@ export default {
   height: 500px;
 }
 .line-introduced {
-  position: absolute;
-  top: 85%;
-  left: 20%;
 }
 .node-introduced {
-  position: absolute;
-  top: 80%;
-  left: 20%;
 }
 button {
   position: absolute;
@@ -244,6 +249,14 @@ button {
   position: absolute;
   width: 150px;
   left: 50px;
+}
+.team-title {
+  text-align: left;
+  margin-left: 50px;
+}
+.node-detaile {
+  text-align: left;
+  margin-left: 30px;
 }
 </style>
 

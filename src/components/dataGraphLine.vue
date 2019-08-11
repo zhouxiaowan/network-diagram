@@ -1,49 +1,14 @@
 <template>
-  <div class="center-content">
-    <h2 class="team-title">团伙分析模型</h2>
-    <h3 class="teaminfo" v-if="nodes">以{{nodes[0].id}}为出发点的串并案社群</h3>
-    <div id="graph-container"></div>
-    <div class="table-info">
-      <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
-        <thead>
-          <tr>
-            <th>警情编号</th>
-            <th>报警时间</th>
-            <th>事发地点</th>
-            <th>报警类型</th>
-            <th>报警内容</th>
-            <th>报警人</th>
-            <th>处警人</th>
-            <th>处警结果</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item,index) in nodes" :key="index">
-            <td v-if="item.data.type === 'case'">{{item.id}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.time}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.address}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.ptype}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.content}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.rname}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.dname}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.proceresult}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 class="teaminfo">团伙分析</h3>
-    <teamAnalysis></teamAnalysis>
-  </div>
+  <div id="graph-lineinfo"></div>
 </template>
 <script>
 import ogma from "../assets/js/ogma2.7.4.min.js";
 import "../assets/css/font-awesome/css/font-awesome.min.css";
-import teamAnalysis from "./teamAnalysis";
+import { setTimeout } from "timers";
 export default {
   data() {
     return {
-      graph: null,
-      nodes: null,
+      lineinfo: null,
       defaultLayoutOptions: {
         direction: "LR", // Direction of the layout. Can be TB, BT, LR, or RL,
         // where T = top, B = bottom, L = left, and R = right.
@@ -53,46 +18,30 @@ export default {
       }
     };
   },
-  props: ["graphData"],
-  components: {
-    teamAnalysis
-  },
+  components: {},
   created() {
     this.initData();
   },
-  mounted() {},
-  watch: {},
+  props: ["edgeinfo"],
   methods: {
     initData() {
-      this.$axios({
-        methods: "get",
-        url: "http://192.168.0.104:5000/searchcase"
-      })
-        .then(res => {
-          this.graph = res.data;
-          this.nodes = res.data.nodes;
-        })
-        .then(res => {
-          this.initOgma();
-        })
-        .then(res => {
-          this.filterHandler();
-        })
-        .catch(err => {});
+      if (this.edgeinfo) {
+        setTimeout(() => {
+          this.initOgma(this.edgeinfo);
+        }, 0);
+      }
     },
-    initOgma() {
+    initOgma(data) {
       this.ogma = new Ogma({
-        container: "graph-container",
+        container: "graph-lineinfo",
         renderer: "canvas"
       });
-      this.ogma.setGraph(this.graph);
+
+      this.ogma.setGraph(data);
       this.runLayout(this.defaultLayoutOptions);
       // 加载节点和线的样式
       this.initDefaultNodes();
       this.initDefaultEage();
-      // 加载一些默认事件
-      this.initDefaultListeners();
-      this.filterHandler();
     },
     initDefaultEage() {
       this.ogma.getEdges().setAttributes(
@@ -112,9 +61,11 @@ export default {
             content: this.ogma.rules.map({
               field: "type",
               values: {
+                person: "\uf2c0",
                 case: "\uf0f6",
                 tel: "\uf095",
-                tool: "\uf085"
+                card: "\uf2c3",
+                factory: "\uf275"
               }
             }),
             color: "#fff"
@@ -122,7 +73,7 @@ export default {
           color: this.ogma.rules.map({
             field: "type",
             values: {
-              part: "orange",
+              person: "#1989fa",
               manufacturer: "limegreen",
               device: "orangered"
             }
@@ -136,23 +87,6 @@ export default {
         }
       });
     },
-    // 添加事件
-    // initDefaultListeners() {
-    //   const self = this;
-    //   const nodeIntroduced = document.getElementsByClassName("node-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && evt.target.isNode) {
-    //       //   self.ogma.removeNode(evt.target.getId());
-    //       nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
-    //     }
-    //   });
-    //   const lineIntroduced = document.getElementsByClassName("line-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && !evt.target.isNode) {
-    //       lineIntroduced.innerHTML = "边的信息是：" + evt.target.getData().type;
-    //     }
-    //   });
-    // },
     runLayout(options) {
       const self = this;
       this.ogma.layouts.hierarchical(options).then(function() {
@@ -161,15 +95,12 @@ export default {
           duration: 300
         });
       });
-    },
-    filterHandler(value, row, column) {
-      return row.data.type === value;
     }
   }
 };
 </script>
 <style scoped>
-#graph-container {
+#graph-line {
   /* top: 0;
   bottom: 0;
   left: 0;
@@ -239,15 +170,12 @@ button {
   padding: 12px 10px;
   text-overflow: ellipsis;
   vertical-align: middle;
+  text-align: left;
 }
 .teaminfo {
   text-align: left;
   margin-left: 30px;
-  margin-top: 20px;
-}
-.team-title {
-  text-align: left;
-  margin-left: 50px;
+  margin-top: 50px;
 }
 </style>
 
