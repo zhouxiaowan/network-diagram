@@ -159,12 +159,15 @@ export default {
       });
       this.ogma.events.onClick(evt => {
         if (evt.target && !evt.target.isNode) {
-          console.log("边1", evt.target);
-          console.log("边2", evt.target);
+          console.log("边1到边2", evt.target.getExtremities().getId());
+          console.log("边1", evt.target.getSource().getId());
+          console.log("边2", evt.target.getTarget().getId());
+
           const params = {
-            // source:evt.target
-            // target:
+            source: evt.target.getSource().getId(),
+            target: evt.target.getTarget().getId()
           };
+          console.log("params:", params);
           this.$axios({
             methods: "get",
             url: "http://192.168.0.104:5000/lineinfo"
