@@ -11,5 +11,6 @@ module.exports = {
             },
         }
 
-    }
+    },
+    lintOnSave: false //是否开启eslint 保存检测，有效值：true
 }
