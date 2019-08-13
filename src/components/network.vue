@@ -56,7 +56,7 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "http://192.168.0.104:5000/searchRelation"
+        url: "/apis/searchRelation"
       })
         .then(res => {
           this.graph = res.data;
@@ -170,7 +170,7 @@ export default {
           console.log("params:", params);
           this.$axios({
             methods: "get",
-            url: "http://192.168.0.104:5000/lineinfo"
+            url: "/apis/lineinfo"
           })
             .then(res => {
               this.edgeinfo = res.data;

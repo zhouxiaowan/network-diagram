@@ -66,7 +66,7 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "http://192.168.0.104:5000/searchcase"
+        url: "/apis/searchcase"
       })
         .then(res => {
           this.graph = res.data;

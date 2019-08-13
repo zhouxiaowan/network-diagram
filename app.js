@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
 app.get('/searchRelation', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://192.168.0.104:8080"); //项目上线后改成页面的地址
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.send({
         "nodes": [{
                 "id": "zhangsan",
@@ -358,9 +355,6 @@ app.get('/searchRelation', function (req, res) {
     })
 });
 app.get('/lineinfo', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "http://192.168.0.104:8080"); //项目上线后改成页面的地址
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.send({
         "nodes": [{
                 "id": "J00003c8b",
@@ -441,9 +435,6 @@ app.get('/lineinfo', (req, res) => {
     })
 });
 app.get('/searchcase', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://192.168.0.104:8080"); //项目上线后改成页面的地址
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.send({
         "nodes": [{
                 "id": "V00413b8e",
@@ -701,9 +692,6 @@ app.get('/searchcase', function (req, res) {
     })
 });
 app.get('/teamanalysis', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "http://192.168.0.104:8080"); //项目上线后改成页面的地址
-    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.send({
         "nodes": [{
                 "id": "zhangzheng",

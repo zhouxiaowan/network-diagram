@@ -55,7 +55,7 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "http://192.168.0.104:5000/teamanalysis"
+        url: "/apis/teamanalysis"
       })
         .then(res => {
           this.graphteam = res.data;
