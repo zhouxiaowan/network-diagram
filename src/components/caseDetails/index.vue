@@ -33,13 +33,13 @@
       </table>
     </div>
     <h3 class="teaminfo">团伙分析</h3>
-    <teamAnalysis v-if="showteamAnaly" :caseNum="caseid"></teamAnalysis>
+    <involvedCase v-if="showteamAnaly" :caseNum="caseid"></involvedCase>
   </div>
 </template>
 <script>
-import ogma from "../assets/js/ogma2.7.4.min.js";
-import "../assets/css/font-awesome/css/font-awesome.min.css";
-import teamAnalysis from "./teamAnalysis";
+import ogma from "../../assets/js/ogma2.7.4.min.js";
+import "../../assets/css/font-awesome/css/font-awesome.min.css";
+import involvedCase from "./involvedCase";
 export default {
   data() {
     return {
@@ -59,7 +59,7 @@ export default {
   },
   props: ["graphData"],
   components: {
-    teamAnalysis
+    involvedCase
   },
   created() {
     // this.initData();
@@ -74,9 +74,9 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "/apis/searchcase"
+        url: "/apis/findTeamByRecordId"
         // methods: "post",
-        // url:"http://50.64.129.46:8030/findTeamByRecordId",
+        // url:"/apis/findTeamByRecordId",
         // data:{
         //   recordId:this.caseid
         // }
@@ -105,6 +105,7 @@ export default {
       this.initDefaultNodes();
       this.initDefaultEage();
       // 加载一些默认事件
+      // this.onChange();
       this.initDefaultListeners();
       this.filterHandler();
     },
@@ -167,6 +168,35 @@ export default {
     //     }
     //   });
     // },
+
+    // 设立层级关系
+    onChange() {
+      var defaultLayoutOptions = {
+        direction: "LR", // Direction of the layout. Can be TB, BT, LR, or RL,
+        // where T = top, B = bottom, L = left, and R = right.
+        duration: 300, // Duration of the animation
+        nodeDistance: 15, // Number of pixels that separate nodes horizontally in the layout.
+        levelDistance: 50 // Number of pixels between each layer in the layout.
+      };
+
+      this.ogma.getNodes().fillData("layer", null);
+      var sinks = [];
+
+      this.ogma.getNodes().forEach(function(node) {
+        var layer = node.getData("categories");
+        if (typeof layer === "number") {
+          node.setData("layer", layer);
+        }
+      });
+      // create fresh new options
+      var newOptions = {};
+      for (var prop in defaultLayoutOptions) {
+        newOptions[prop] = defaultLayoutOptions[prop];
+      }
+      // save the sinks in the layout options
+      newOptions.sinks = sinks;
+      this.runLayout(newOptions);
+    },
     runLayout(options) {
       const self = this;
       this.ogma.layouts.hierarchical(options).then(function() {

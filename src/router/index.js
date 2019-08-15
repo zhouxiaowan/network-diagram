@@ -3,8 +3,8 @@ import Router from 'vue-router';
 
 
 import index from '@/components/index.vue';
-import network from '@/components/network.vue'
-import detailsCase from "@/components/detailsCase.vue"
+import teamDetails from '@/components/teamDetails/index.vue'
+import caseDetails from "@/components/caseDetails/index.vue"
 
 
 Vue.use(Router);
@@ -17,14 +17,14 @@ const params = {
             component: index
         },
         {
-            path: '/network',
-            name: 'network',
-            component: network
+            path: '/teamDetails',
+            name: 'teamDetails',
+            component: teamDetails
         },
         {
-            path: "/detailsCase",
-            name: "detailsCase",
-            component: detailsCase
+            path: "/caseDetails",
+            name: "caseDetails",
+            component: caseDetails
         }
     ]
 }

@@ -117,10 +117,10 @@ export default {
     },
     jumpToCanvas() {},
     jumpToRelation() {
-      this.$router.push({ path: "/detailsCase" });
+      this.$router.push({ path: "/caseDetails" });
     },
     jumpToExternalLink(href) {
-      this.$router.push({ path: "/network" });
+      this.$router.push({ path: "/teamDetails" });
     }
   },
   mounted: function() {

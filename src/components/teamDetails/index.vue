@@ -3,6 +3,15 @@
     <h2 class="team-title">团伙分析模型</h2>
     <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
     <div id="graph-container"></div>
+    <div class="degree-team" v-if="graph">
+      <h3 style="margin-left:35px">团伙置信度</h3>
+      <ul>
+        <li :key="index" v-for="(item,index) in graph.nodes">
+          <p v-if="item.data.score">{{item.data.name}}:{{item.data.score*100}}</p>
+        </li>
+      </ul>
+    </div>
+    <div style="clear:both"></div>
     <!-- <div class="block">
       <span class="demonstration">置信度筛选</span>
       <el-slider v-model="degree" :step="10"></el-slider>
@@ -18,8 +27,8 @@
   </div>
 </template>
 <script>
-import ogma from "../assets/js/ogma2.7.4.min.js";
-import "../assets/css/font-awesome/css/font-awesome.min.css";
+import ogma from "../../assets/js/ogma2.7.4.min.js";
+import "../../assets/css/font-awesome/css/font-awesome.min.css";
 import dataTableCase from "./dataTableCase";
 import dataGraphLine from "./dataGraphLine";
 export default {
@@ -49,7 +58,6 @@ export default {
     degree() {
       const level = this.degree;
       var filter;
-      //   console.log("transformations", this.ogma.transformations);
       filter = this.ogma.transformations.addNodeFilter(function(n) {
         return !n.getData("score") || (n.getData("score") && n.getData("score") >= level / 100);
       });
@@ -91,6 +99,7 @@ export default {
       this.onChange();
       this.initDefaultListeners();
     },
+    // 线的样式规则
     initDefaultEage() {
       this.ogma.getEdges().forEach(edg => {
         if (edg.getData("type")) {
@@ -116,6 +125,16 @@ export default {
       });
     },
     initDefaultNodes() {
+      // 基本节点颜色设置
+      this.ogma.getNodes().forEach(node => {
+        if (node.getData("score") >= 0.7) {
+          node.setAttribute("color", "red");
+        } else if (node.getData("score") < 0.7 && node.getData("score") >= 0.5) {
+          node.setAttribute("color", "yellow");
+        } else if (node.getData("score")) {
+          node.setAttribute("color", "green");
+        }
+      });
       // 基本节点的样式规则
       this.ogma.styles.addRule({
         nodeAttributes: {
@@ -155,38 +174,28 @@ export default {
         if (evt.target && evt.target.isNode) {
           console.log("节点", evt);
           this.nodeinfo = evt.target.getData();
-          // console.log(evt.target.getData());
-          //   this.$axios({
-          //     methods: "get",
-          //     url: "http://192.168.0.104:5000/nodeinfo"
-          //   })
-          //     .then(res => {
-          //       console.log(res.data.nodeDetail);
-          //     })
-          //     .catch({});
-          //   this.ogma.removeNode(evt.target.getId());
-          //   nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
         }
       });
       this.ogma.events.onClick(evt => {
         if (evt.target && !evt.target.isNode) {
-          console.log("边1到边2", evt.target.getExtremities().getId());
-          console.log("边1", evt.target.getSource().getId());
-          console.log("边2", evt.target.getTarget().getId());
-
           const params = {
             source: evt.target.getSource().getId(),
             target: evt.target.getTarget().getId()
           };
-          console.log("params:", params);
           this.$axios({
             methods: "get",
-            url: "/apis/lineinfo"
+            url: "/apis/findRelevanceFacotr"
           })
             .then(res => {
               this.edgeinfo = res.data;
             })
             .catch({});
+          // this.$axios
+          //   .post("/apis/findRelevanceFacotr", params)
+          //   .then(res => {
+          //     this.edgeinfo = res.data;
+          //   })
+          //   .catch(err => {});
         }
       });
     },
@@ -235,6 +244,7 @@ export default {
 #graph-container {
   width: 80%;
   height: 500px;
+  float: left;
 }
 .line-introduced {
 }
@@ -271,6 +281,20 @@ button {
 .node-detaile {
   text-align: left;
   margin-left: 30px;
+}
+.degree-team {
+  box-sizing: border-box;
+  border: 1px solid #333;
+  float: left;
+  width: 18%;
+  text-align: left;
+  border-radius: 5px;
+  padding: 10px;
+  max-height: 500px;
+  overflow: scroll;
+}
+.degree-team ul li {
+  list-style: none;
 }
 </style>
 

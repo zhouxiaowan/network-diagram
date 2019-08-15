@@ -34,8 +34,8 @@
   </div>
 </template>
 <script>
-import ogma from "../assets/js/ogma2.7.4.min.js";
-import "../assets/css/font-awesome/css/font-awesome.min.css";
+import ogma from "../../assets/js/ogma2.7.4.min.js";
+import "../../assets/css/font-awesome/css/font-awesome.min.css";
 export default {
   data() {
     return {
@@ -65,14 +65,17 @@ export default {
         id: this.sigleNodeId
       };
       this.$router.push({
-        path: "/network",
+        path: "/teamDetails",
         query: params
       });
     },
     initData() {
       this.$axios({
         methods: "get",
-        url: "/apis/teamanalysis"
+        url: "/apis/findTeamAndPersonByRecord"
+        // data: {
+        //   recordId: this.
+        // }
       })
         .then(res => {
           this.graphteam = res.data;
@@ -179,8 +182,8 @@ export default {
 
     runLayout(options) {
       const self = this;
-      //   console.log(this.ogma.layouts);
-      this.ogma.layouts.hierarchical(options).then(function() {
+      console.log(this.ogma.layouts);
+      this.ogma.layouts.forceLink(options).then(function() {
         self.ogma.view.locateGraph({
           easing: "linear",
           duration: 300
@@ -193,6 +196,7 @@ export default {
 <style scoped>
 #graph-team {
   width: 80%;
+  /* height: 500px; */
 }
 .line-introduced {
   position: absolute;

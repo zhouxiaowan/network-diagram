@@ -2,8 +2,8 @@
   <div id="graph-lineinfo"></div>
 </template>
 <script>
-import ogma from "../assets/js/ogma2.7.4.min.js";
-import "../assets/css/font-awesome/css/font-awesome.min.css";
+import ogma from "../../assets/js/ogma2.7.4.min.js";
+import "../../assets/css/font-awesome/css/font-awesome.min.css";
 import { setTimeout } from "timers";
 export default {
   data() {
@@ -100,16 +100,8 @@ export default {
 };
 </script>
 <style scoped>
-#graph-line {
-  /* top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  margin-left: 200px;
-  height: 80%; */
+#graph-lineinfo {
+  width: 80%;
 }
 .line-introduced {
   position: absolute;
