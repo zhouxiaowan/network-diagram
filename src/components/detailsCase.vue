@@ -1,9 +1,10 @@
 <template>
   <div class="center-content">
-    <h2 class="team-title">团伙分析模型</h2>
-    <h3 class="teaminfo" v-if="nodes">以{{nodes[0].id}}为出发点的串并案社群</h3>
+    <h2 class="team-title">串并案详情</h2>
+    <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="caseid" @keyup.enter.native="caseSearch"></el-input>
+    <h3 class="teaminfo" v-if="nodes&&caseid">以{{caseid}}为出发点的串并案社群</h3>
     <div id="graph-container"></div>
-    <div class="table-info">
+    <div class="table-info" v-if="nodes">
       <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
         <thead>
           <tr>
@@ -32,7 +33,7 @@
       </table>
     </div>
     <h3 class="teaminfo">团伙分析</h3>
-    <teamAnalysis></teamAnalysis>
+    <teamAnalysis v-if="showteamAnaly" :caseNum="caseid"></teamAnalysis>
   </div>
 </template>
 <script>
@@ -42,6 +43,9 @@ import teamAnalysis from "./teamAnalysis";
 export default {
   data() {
     return {
+      caseid: "",
+      showGraph: false,
+      showteamAnaly: false,
       graph: null,
       nodes: null,
       defaultLayoutOptions: {
@@ -58,19 +62,29 @@ export default {
     teamAnalysis
   },
   created() {
-    this.initData();
+    // this.initData();
   },
   mounted() {},
   watch: {},
   methods: {
+    caseSearch() {
+      this.initData();
+      this.showteamAnaly = true;
+    },
     initData() {
       this.$axios({
         methods: "get",
         url: "/apis/searchcase"
+        // methods: "post",
+        // url:"http://50.64.129.46:8030/findTeamByRecordId",
+        // data:{
+        //   recordId:this.caseid
+        // }
       })
         .then(res => {
           this.graph = res.data;
           this.nodes = res.data.nodes;
+          this.showGraph = true;
         })
         .then(res => {
           this.initOgma();
@@ -169,16 +183,14 @@ export default {
 };
 </script>
 <style scoped>
+.el-select .el-input {
+  width: 130px;
+}
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
 #graph-container {
-  /* top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  margin-left: 200px;
-  height: 80%; */
+  width: 80%;
 }
 .line-introduced {
   position: absolute;

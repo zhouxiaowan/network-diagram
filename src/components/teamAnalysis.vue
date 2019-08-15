@@ -1,6 +1,10 @@
 <template>
   <div>
     <div id="graph-team"></div>
+    <div v-show="handleNode">
+      <div>操作节点:{{sigleNode}}</div>
+      <div class="teamAnaly" @click="teamAnaly">跳转到该节点团伙分析页面</div>
+    </div>
     <div class="table-info">
       <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
         <thead>
@@ -37,6 +41,9 @@ export default {
     return {
       graphteam: null,
       nodesteam: null,
+      handleNode: false,
+      sigleNode: "",
+      sigleNodeId: "",
       defaultLayoutOptions: {
         direction: "LR", // Direction of the layout. Can be TB, BT, LR, or RL,
         // where T = top, B = bottom, L = left, and R = right.
@@ -46,12 +53,22 @@ export default {
       }
     };
   },
+  props: ["caseNum"],
   components: {},
   created() {
     this.initData();
   },
   watch: {},
   methods: {
+    teamAnaly() {
+      const params = {
+        id: this.sigleNodeId
+      };
+      this.$router.push({
+        path: "/network",
+        query: params
+      });
+    },
     initData() {
       this.$axios({
         methods: "get",
@@ -143,22 +160,22 @@ export default {
       });
     },
     // 添加事件
-    // initDefaultListeners() {
-    //   const self = this;
-    //   const nodeIntroduced = document.getElementsByClassName("node-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && evt.target.isNode) {
-    //       //   self.ogma.removeNode(evt.target.getId());
-    //       nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
-    //     }
-    //   });
-    //   const lineIntroduced = document.getElementsByClassName("line-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && !evt.target.isNode) {
-    //       lineIntroduced.innerHTML = "边的信息是：" + evt.target.getData().type;
-    //     }
-    //   });
-    // },
+    initDefaultListeners() {
+      this.ogma.events.onClick(evt => {
+        if (evt.target && evt.target.isNode) {
+          if (evt.target.getData("type") === "person") {
+            this.handleNode = true;
+            this.sigleNode = evt.target.getData("name");
+            this.sigleNodeId = evt.target.getId();
+          } else {
+            this.handleNode = false;
+          }
+
+          // this.ogma.removeNode(evt.target.getId());
+          // console.log(evt.target.getPosition());
+        }
+      });
+    },
 
     runLayout(options) {
       const self = this;
@@ -175,15 +192,7 @@ export default {
 </script>
 <style scoped>
 #graph-team {
-  /* top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: 0;
-  overflow: hidden;
-  margin-left: 200px;
-  height: 80%; */
+  width: 80%;
 }
 .line-introduced {
   position: absolute;
@@ -250,6 +259,15 @@ button {
   text-align: left;
   margin-left: 30px;
   margin-top: 50px;
+}
+.teamAnaly {
+  border: 1px solid #dcdfe6;
+  color: #409eff;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+  display: inline-block;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 </style>
 

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <navbar></navbar>
-    </div>
     <div class="graph">
       <router-view></router-view>
     </div>
@@ -10,12 +7,9 @@
 </template>
 
 <script>
-import navbar from "./components/navbar";
 export default {
   name: "app",
-  components: {
-    navbar
-  },
+  components: {},
   mounted() {}
 };
 </script>

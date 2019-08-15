@@ -1,6 +1,7 @@
 <template>
   <div class="center-content">
     <h2 class="team-title">团伙分析模型</h2>
+    <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
     <div id="graph-container"></div>
     <!-- <div class="block">
       <span class="demonstration">置信度筛选</span>
@@ -24,6 +25,7 @@ import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
+      idcard: "",
       graph: null,
       degree: 0,
       nodeinfo: null,
@@ -31,7 +33,13 @@ export default {
     };
   },
   created() {
-    this.initData();
+    if (this.$route.query.id) {
+      this.idcard = this.$route.query.id;
+      this.initData();
+    }
+  },
+  mounted() {
+    console.log(this.$route.query.id);
   },
   components: {
     dataTableCase,
@@ -53,6 +61,9 @@ export default {
     }
   },
   methods: {
+    idSearch() {
+      this.initData();
+    },
     initData() {
       this.$axios({
         methods: "get",
@@ -222,7 +233,7 @@ export default {
 </script>
 <style scoped>
 #graph-container {
-  width: 100%;
+  width: 80%;
   height: 500px;
 }
 .line-introduced {

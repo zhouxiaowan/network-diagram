@@ -12,7 +12,7 @@ Vue.use(Router);
 const params = {
     mode: 'history',
     routes: [{
-            path: '/tree',
+            path: '/',
             name: 'index',
             component: index
         },
