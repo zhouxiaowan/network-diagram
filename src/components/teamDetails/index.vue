@@ -21,7 +21,7 @@
       <dataTableCase :nodeinfo="nodeinfo"></dataTableCase>
     </div>
     <div class="line-introduced" v-if="edgeinfo">
-      <p class="node-detaile">边的信息是：</p>
+      <p class="node-detaile">串并原因：</p>
       <dataGraphLine :edgeinfo="edgeinfo"></dataGraphLine>
     </div>
   </div>

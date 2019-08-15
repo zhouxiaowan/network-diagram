@@ -3,10 +3,10 @@
     <my-header></my-header>
     <div class="header">
       <img src="../assets/img/head.png" alt />
-      <div>
+      <div style="text-align: left;">
         <p>
-          <span class="name">吴建平</span>
-          <span class="identity">队长</span>
+          <span class="name">刘洋</span>
+          <span class="identity"></span>
         </p>
         <p class="address">登录时间：{{this.logTime}}</p>
       </div>
@@ -24,23 +24,6 @@
     <div class="content">
       <!--左侧flex-->
       <div class="left-content">
-        <div class="search-input">
-          <input type="text" placeholder="搜素关键信息" @keyup.enter="searchToCanvas" v-model="searchWord" />
-          <i class="i1 iconfont" @click="searchToCanvas">&#xe655;</i>
-          <span id="search_spec" @click="searchToCanvas">
-            高级筛选
-            <i class="i2 iconfont"></i>
-          </span>
-          <ul>
-            如：
-            <li>人名</li>
-            <li>绰号</li>
-            <li>手机号</li>
-            <li>酒店</li>
-            <li>警情编号</li>
-            <li>案情编号等</li>
-          </ul>
-        </div>
         <p>智能模型</p>
         <div class="models">
           <div class="model m1" @click="jumpToCanvas()">
@@ -53,13 +36,13 @@
             <span>团伙分析模型</span>
           </div>
           <div class="model m4 model-in-dev">
-            <span>串并案模型（建设中）</span>
+            <span>共同联系人模型(建设中)</span>
           </div>
           <div class="model m4 model-in-dev">
-            <span>断点追踪（建设中）</span>
+            <span>同住模型（建设中）</span>
           </div>
           <div class="model m4 model-in-dev">
-            <span>嫌疑指数（建设中）</span>
+            <span>......</span>
           </div>
         </div>
       </div>
@@ -86,7 +69,7 @@
           <p>节点类型图</p>
           <index-chart-type></index-chart-type>
           <p>节点递增图</p>
-          <!-- <index-chart-increse></index-chart-increse> -->
+          <index-chart-increse></index-chart-increse>
         </div>
       </div>
     </div>
@@ -97,6 +80,7 @@
 import header from "./header.vue";
 import indexcharttype from "./indexChartType.vue";
 import indexchartincrese from "./indexChartIncress.vue";
+import "../assets/iconfont/iconfont.css";
 export default {
   data() {
     return {

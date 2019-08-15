@@ -196,7 +196,7 @@ export default {
 <style scoped>
 #graph-team {
   width: 80%;
-  /* height: 500px; */
+  height: 500px;
 }
 .line-introduced {
   position: absolute;

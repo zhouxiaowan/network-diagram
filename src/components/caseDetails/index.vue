@@ -1,9 +1,13 @@
 <template>
   <div class="center-content">
-    <h2 class="team-title">串并案详情</h2>
+    <h2 class="team-title">串并案模型</h2>
     <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="caseid" @keyup.enter.native="caseSearch"></el-input>
     <h3 class="teaminfo" v-if="nodes&&caseid">以{{caseid}}为出发点的串并案社群</h3>
     <div id="graph-container"></div>
+    <div class="line-introduced" v-if="edgeinfo">
+      <p class="node-detaile">串并原因：</p>
+      <dataGraphLine :edgeinfo="edgeinfo"></dataGraphLine>
+    </div>
     <div class="table-info" v-if="nodes">
       <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
         <thead>
@@ -32,7 +36,7 @@
         </tbody>
       </table>
     </div>
-    <h3 class="teaminfo">团伙分析</h3>
+    <h3 class="teaminfo">涉案人员</h3>
     <involvedCase v-if="showteamAnaly" :caseNum="caseid"></involvedCase>
   </div>
 </template>
@@ -40,6 +44,7 @@
 import ogma from "../../assets/js/ogma2.7.4.min.js";
 import "../../assets/css/font-awesome/css/font-awesome.min.css";
 import involvedCase from "./involvedCase";
+import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
@@ -48,6 +53,7 @@ export default {
       showteamAnaly: false,
       graph: null,
       nodes: null,
+      edgeinfo: null,
       defaultLayoutOptions: {
         direction: "LR", // Direction of the layout. Can be TB, BT, LR, or RL,
         // where T = top, B = bottom, L = left, and R = right.
@@ -59,7 +65,8 @@ export default {
   },
   props: ["graphData"],
   components: {
-    involvedCase
+    involvedCase,
+    dataGraphLine
   },
   created() {
     // this.initData();
@@ -105,7 +112,7 @@ export default {
       this.initDefaultNodes();
       this.initDefaultEage();
       // 加载一些默认事件
-      // this.onChange();
+      this.onChange();
       this.initDefaultListeners();
       this.filterHandler();
     },
@@ -152,22 +159,36 @@ export default {
       });
     },
     // 添加事件
-    // initDefaultListeners() {
-    //   const self = this;
-    //   const nodeIntroduced = document.getElementsByClassName("node-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && evt.target.isNode) {
-    //       //   self.ogma.removeNode(evt.target.getId());
-    //       nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
-    //     }
-    //   });
-    //   const lineIntroduced = document.getElementsByClassName("line-introduced")[0];
-    //   this.ogma.events.onClick(function(evt) {
-    //     if (evt.target && !evt.target.isNode) {
-    //       lineIntroduced.innerHTML = "边的信息是：" + evt.target.getData().type;
-    //     }
-    //   });
-    // },
+    initDefaultListeners() {
+      // this.ogma.events.onClick(evt=> {
+      //   if (evt.target && evt.target.isNode) {
+      //     self.ogma.removeNode(evt.target.getId());
+      //     nodeIntroduced.innerHTML = "节点的信息是：" + evt.target.getId();
+      //   }
+      // });
+      this.ogma.events.onClick(evt => {
+        if (evt.target && !evt.target.isNode) {
+          const params = {
+            source: evt.target.getSource().getId(),
+            target: evt.target.getTarget().getId()
+          };
+          this.$axios({
+            methods: "get",
+            url: "/apis/findRelevanceFacotr"
+          })
+            .then(res => {
+              this.edgeinfo = res.data;
+            })
+            .catch({});
+          // this.$axios
+          //   .post("/apis/findRelevanceFacotr", params)
+          //   .then(res => {
+          //     this.edgeinfo = res.data;
+          //   })
+          //   .catch(err => {});
+        }
+      });
+    },
 
     // 设立层级关系
     onChange() {
@@ -221,11 +242,9 @@ export default {
 }
 #graph-container {
   width: 80%;
+  height: 450px;
 }
 .line-introduced {
-  position: absolute;
-  top: 85%;
-  left: 20%;
 }
 .node-introduced {
   position: absolute;
@@ -290,6 +309,10 @@ button {
 .team-title {
   text-align: left;
   margin-left: 50px;
+}
+.node-detaile {
+  text-align: left;
+  margin-left: 30px;
 }
 </style>
 

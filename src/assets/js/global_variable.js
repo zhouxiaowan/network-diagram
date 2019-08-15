@@ -1,5 +1,5 @@
 const baseURL = ''
-const localURL = 'http://192.168.0.104:5000'
+const localURL = ''
 
 export default {
     baseURL,
