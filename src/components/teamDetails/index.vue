@@ -75,7 +75,7 @@ export default {
     initData() {
       const params = { idCard: this.idcard };
       this.$axios
-        .post("/apis/findPersonTeamByIdCard", params)
+        .post("http://50.64.129.46:8030/findPersonTeamByIdCard", params)
         // this.$axios({
         //   methods: "get",
         //   url: "/apis/findPersonTeamByIdCard"
@@ -197,7 +197,7 @@ export default {
           //   })
           //   .catch({});
           this.$axios
-            .post("/apis/findRelevanceFacotr", params)
+            .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
             .then(res => {
               this.edgeinfo = res.data;
             })

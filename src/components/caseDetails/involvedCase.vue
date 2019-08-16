@@ -71,7 +71,7 @@ export default {
     },
     initData() {
       this.$axios
-        .post("/apis/findTeamAndPersonByRecord", { recordId: this.caseNum })
+        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: this.caseNum })
         // this.$axios({
         //   methods: "get",
         //   url: "/apis/findTeamAndPersonByRecord"

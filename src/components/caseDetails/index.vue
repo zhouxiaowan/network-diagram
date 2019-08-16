@@ -81,7 +81,7 @@ export default {
     },
     initData() {
       this.$axios
-        .post("/apis/findTeamByRecordId", { recordId: this.caseid })
+        .post("http://50.64.129.46:8030/findTeamByRecordId", { recordId: this.caseid })
         // this.$axios({
         //   methods: "get",
         //   url: "/apis/findTeamByRecordId"
@@ -171,7 +171,7 @@ export default {
             target: evt.target.getTarget().getId()
           };
           this.$axios
-            .post("/apis/findRelevanceFacotr", params)
+            .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
             // this.$axios({
             //   methods: "get",
             //   url: "/apis/findRelevanceFacotr"
