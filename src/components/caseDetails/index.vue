@@ -87,8 +87,8 @@ export default {
         //   url: "/apis/findTeamByRecordId"
         // })
         .then(res => {
-          this.graph = res.data;
-          this.nodes = res.data.nodes;
+          this.graph = res.data.result;
+          this.nodes = res.data.result.nodes;
           this.showGraph = true;
         })
         .then(res => {
@@ -177,7 +177,7 @@ export default {
             //   url: "/apis/findRelevanceFacotr"
             // })
             .then(res => {
-              this.edgeinfo = res.data;
+              this.edgeinfo = res.data.result;
             })
             .catch({});
         }

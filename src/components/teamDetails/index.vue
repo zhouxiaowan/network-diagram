@@ -81,7 +81,7 @@ export default {
         //   url: "/apis/findPersonTeamByIdCard"
         // })
         .then(res => {
-          this.graph = res.data;
+          this.graph = res.data.result;
         })
         .then(res => {
           this.initOgma();
@@ -199,7 +199,7 @@ export default {
           this.$axios
             .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
             .then(res => {
-              this.edgeinfo = res.data;
+              this.edgeinfo = res.data.result;
             })
             .catch(err => {});
         }

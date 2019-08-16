@@ -80,8 +80,8 @@ export default {
         //   // }
         // })
         .then(res => {
-          this.graphteam = res.data;
-          this.nodesteam = res.data.nodes;
+          this.graphteam = res.data.result;
+          this.nodesteam = res.data.result.nodes;
         })
         .then(res => {
           this.initOgma();
