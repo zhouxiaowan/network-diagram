@@ -1,7 +1,8 @@
 <template>
   <div class="center-content">
     <h2 class="team-title">团伙分析模型</h2>
-    <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
+    <el-input style="width:300px" class="search-input" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
+    <div class="clear"></div>
     <div id="graph-container"></div>
     <div class="degree-team" v-if="graph">
       <h3 style="margin-left:35px">团伙置信度</h3>
@@ -304,6 +305,10 @@ button {
 }
 .degree-team ul li {
   list-style: none;
+}
+.search-input {
+  text-align: left;
+  margin-left: 30px;
 }
 </style>
 
