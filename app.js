@@ -1,362 +1,288 @@
 const express = require('express');
 const app = express();
-app.get('/searchRelation', function (req, res) {
+app.get('/findPersonTeamByIdCard', function (req, res) {
     res.send({
         "nodes": [{
-                "id": "zhangsan",
                 "data": {
-                    "name": "张三",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
-                    "categories": 0
-                }
+                    "name": "刘东升",
+                    "categories": 0,
+                    "type": "person"
+                },
+                "id": "320281197801238577"
             },
             {
-                "id": "J00003c8b",
                 "data": {
-                    "name": "J00003c8b",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 1
-                }
+                    "name": "江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
+                    "categories": 1,
+                    "type": "address"
+                },
+                "id": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501"
             },
             {
-                "id": "V00413b8e",
                 "data": {
-                    "name": "V00413b8e",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 1
-                }
+                    "name": "江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
+                    "categories": 1,
+                    "type": "address"
+                },
+                "id": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501"
             },
             {
-                "id": "K01420v6l",
                 "data": {
-                    "name": "K01420v6l",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 1
-                }
+                    "name": "山东省济南市万科中心12楼",
+                    "categories": 1,
+                    "type": "CM"
+                },
+                "id": "CM:山东省济南市万科中心12楼"
             },
             {
-                "id": "13210205415",
                 "data": {
-                    "name": "13210205415",
-                    "type": "tel",
-                    "categories": 1
-                }
+                    "name": "J3202150107085274665",
+                    "categories": "1",
+                    "type": "case"
+                },
+                "id": "J3202150107085274665"
             },
             {
-                "id": "card",
                 "data": {
-                    "name": "北京市海淀区",
-                    "type": "card",
-                    "categories": 1
-                }
+                    "name": "J3202150101180933051",
+                    "categories": "1",
+                    "type": "case"
+                },
+                "id": "J3202150101180933051"
             },
             {
-                "id": "factory",
                 "data": {
-                    "name": "北京市海淀区",
-                    "type": "factory",
-                    "categories": 1
-                }
+                    "name": "J3202150131160711612",
+                    "categories": "1",
+                    "type": "case"
+                },
+                "id": "J3202150131160711612"
             },
             {
-                "id": "D12503ve4",
                 "data": {
-                    "name": "D12503ve4",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 2
-                }
+                    "name": "J3202150211205416649",
+                    "categories": 2,
+                    "type": "case"
+                },
+                "id": "J3202150211205416649"
             },
             {
-                "id": "K20325v8g",
                 "data": {
-                    "name": "K20325v8g",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 2
-                }
+                    "name": "J3202150521142720623",
+                    "categories": 2,
+                    "type": "case"
+                },
+                "id": "J3202150521142720623"
             },
             {
-                "id": "J10020e5f",
                 "data": {
-                    "name": "J10020e5f",
-                    "type": "case",
-                    "time": "2014.01.05",
-                    "address": "望京西地铁站附近",
-                    "ptype": "威胁他人人身安全",
-                    "content": "张先生报，在望京西地铁站附近被讨债公司威胁",
-                    "rname": "张正",
-                    "dname": "李强",
-                    "proceresult": "-",
-                    "categories": 2
-                }
+                    "name": "J3202150514110260850",
+                    "categories": 2,
+                    "type": "case"
+                },
+                "id": "J3202150514110260850"
             },
             {
-                "id": "wangyiming",
                 "data": {
-                    "name": "王一鸣",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
+                    "score": 0.37994896225522484,
+                    "name": "居君彪",
+                    "categories": 2,
+                    "type": "person"
+                },
+                "id": "320281195509062409"
+            },
+            {
+                "data": {
+                    "score": 0.19737532022490403,
+                    "name": "王少波",
                     "categories": 3,
-                    "score": 0.3
-                }
+                    "type": "person"
+                },
+                "id": "320281198803027655"
             },
             {
-                "id": "chensijia",
                 "data": {
-                    "name": "陈思佳",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
-                    "categories": 3,
-                    "score": 0.8
-                }
+                    "score": 0.8853516482022624,
+                    "name": "周峰",
+                    "categories": 2,
+                    "type": "person"
+                },
+                "id": "320281198011259607"
             },
             {
-                "id": "liuyuming",
                 "data": {
-                    "name": "刘玉明",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
-                    "categories": 3,
-                    "score": 0.5
-                }
+                    "name": "江阴天胜康食品贸易有限公司",
+                    "categories": 2,
+                    "type": "serplace"
+                },
+                "id": "serplace:江阴天胜康食品贸易有限公司"
             },
             {
-                "id": "zhangchangsheng",
                 "data": {
-                    "name": "张昌盛",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
+                    "score": 0.1325487883908784,
+                    "name": "陈林燕",
                     "categories": 3,
-                    "score": 0.9
-                }
+                    "type": "person"
+                },
+                "id": "320281199203045567"
             },
             {
-                "id": "wulida",
                 "data": {
-                    "name": "吴利达",
-                    "type": "person",
-                    "ptype": "报警人",
-                    "idcard": "102533197301231254",
-                    "CM": "北京市朝阳区",
-                    "serplace": "远方商务咨询有限公司",
-                    "contactel": "15220131232",
-                    "nowplace": "北京",
+                    "score": 0.19737532022490403,
+                    "name": "宋惠新",
                     "categories": 3,
-                    "score": 0.7
-                }
+                    "type": "person"
+                },
+                "id": "320281197909039988"
             },
-
+            {
+                "data": {
+                    "score": 0.19737532022490403,
+                    "name": "任静霞",
+                    "categories": 3,
+                    "type": "person"
+                },
+                "id": "320281197809152377"
+            },
+            {
+                "data": {
+                    "score": 0.8086365140907334,
+                    "name": "陈晔",
+                    "categories": 3,
+                    "type": "person"
+                },
+                "id": "320281198312250960"
+            },
+            {
+                "data": {
+                    "name": "山东省济南市",
+                    "categories": 2,
+                    "type": "CM"
+                },
+                "id": "CM:山东省济南市"
+            },
+            {
+                "data": {
+                    "name": "山东省济南市万科中心11楼",
+                    "categories": 2,
+                    "type": "CM"
+                },
+                "id": "CM:山东省济南市万科中心11楼"
+            }
         ],
         "edges": [{
-                "source": "zhangsan",
-                "target": "J00003c8b",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "320281197801238577",
+                "target": "J3202150107085274665"
             },
             {
-                "source": "zhangsan",
-                "target": "V00413b8e",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "320281197801238577",
+                "target": "J3202150101180933051"
             },
             {
-                "source": "zhangsan",
-                "target": "K01420v6l",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "320281197801238577",
+                "target": "J3202150131160711612"
             },
             {
-                "source": "zhangsan",
-                "target": "13210205415",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150107085274665",
+                "target": "320281195509062409"
             },
             {
-                "source": "zhangsan",
-                "target": "card",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150131160711612",
+                "target": "J3202150514110260850"
             },
             {
-                "source": "zhangsan",
-                "target": "factory",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150101180933051",
+                "target": "320281198011259607"
             },
             {
-                "source": "J00003c8b",
-                "target": "wangyiming",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
+                "target": "320281198011259607"
             },
             {
-                "source": "J00003c8b",
-                "target": "D12503ve4",
-                "data": {
-                    "type": "dashed"
-                }
+                "source": "serplace:江阴天胜康食品贸易有限公司",
+                "target": "320281198011259607"
             },
             {
-                "source": "V00413b8e",
-                "target": "D12503ve4",
-                "data": {
-                    "type": "dashed"
-                }
+                "source": "J3202150131160711612",
+                "target": "J3202150211205416649"
             },
             {
-                "source": "V00413b8e",
-                "target": "K20325v8g",
-                "data": {
-                    "type": "dashed"
-                }
+                "source": "J3202150521142720623",
+                "target": "J3202150211205416649"
             },
             {
-                "source": "K01420v6l",
-                "target": "J10020e5f",
-                "data": {
-                    "type": "dashed"
-                }
+                "source": "J3202150101180933051",
+                "target": "J3202150211205416649"
             },
             {
-                "source": "13210205415",
-                "target": "wulida",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150521142720623",
+                "target": "J3202150131160711612"
             },
             {
-                "source": "card",
-                "target": "zhangchangsheng",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150521142720623",
+                "target": "J3202150101180933051"
             },
             {
-                "source": "factory",
-                "target": "chensijia",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150107085274665",
+                "target": "J3202150211205416649"
             },
             {
-                "source": "D12503ve4",
-                "target": "wangyiming",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150107085274665",
+                "target": "J3202150521142720623"
             },
             {
-                "source": "D12503ve4",
-                "target": "chensijia",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150131160711612",
+                "target": "320281197809152377"
             },
             {
-                "source": "K20325v8g",
-                "target": "wangyiming",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "J3202150131160711612",
+                "target": "J3202150514110260850"
             },
             {
-                "source": "K20325v8g",
-                "target": "liuyuming",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "CM:山东省济南市万科中心12楼",
+                "target": "CM:山东省济南市"
             },
             {
-                "source": "J10020e5f",
-                "target": "chensijia",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "CM:山东省济南市",
+                "target": "320281198312250960"
             },
             {
-                "source": "J10020e5f",
-                "target": "liuyuming",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "CM:山东省济南市万科中心12楼",
+                "target": "CM:山东省济南市万科中心11楼"
             },
             {
-                "source": "J10020e5f",
-                "target": "zhangchangsheng",
-                "data": {
-                    "type": "solid"
-                }
+                "source": "CM:山东省济南市万科中心11楼",
+                "target": "320281198312250960"
             },
-
+            {
+                "source": "J3202150131160711612",
+                "target": "J3202150211205416649"
+            },
+            {
+                "source": "J3202150521142720623",
+                "target": "J3202150211205416649"
+            },
+            {
+                "source": "J3202150101180933051",
+                "target": "J3202150211205416649"
+            },
+            {
+                "source": "J3202150521142720623",
+                "target": "J3202150131160711612"
+            },
+            {
+                "source": "J3202150521142720623",
+                "target": "J3202150101180933051"
+            },
+            {
+                "source": "J3202150107085274665",
+                "target": "J3202150211205416649"
+            },
+            {
+                "source": "J3202150107085274665",
+                "target": "J3202150521142720623"
+            }
         ]
-
     })
 });
 app.get('/findRelevanceFacotr', (req, res) => {

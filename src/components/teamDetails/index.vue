@@ -7,7 +7,7 @@
       <h3 style="margin-left:35px">团伙置信度</h3>
       <ul>
         <li :key="index" v-for="(item,index) in graph.nodes">
-          <p v-if="item.data.score">{{item.data.name}}:{{item.data.score*100}}</p>
+          <p v-if="item.data.score">{{item.data.name}}:{{(item.data.score*100).toFixed(2)}}</p>
         </li>
       </ul>
     </div>
@@ -75,7 +75,7 @@ export default {
     initData() {
       this.$axios({
         methods: "get",
-        url: "/apis/searchRelation"
+        url: "/apis/findPersonTeamByIdCard"
       })
         .then(res => {
           this.graph = res.data;
@@ -147,7 +147,10 @@ export default {
                 case: "\uf0f6",
                 tel: "\uf095",
                 card: "\uf2c3",
-                factory: "\uf275"
+                factory: "\uf275",
+                CM: "\uf041",
+                serplace: "\uf275",
+                address: "\uf0f7"
               }
             }),
             color: "#fff"
@@ -241,9 +244,12 @@ export default {
 };
 </script>
 <style scoped>
+.center-content {
+  margin-bottom: 50px;
+}
 #graph-container {
   width: 80%;
-  height: 500px;
+  height: 750px;
   float: left;
 }
 .line-introduced {

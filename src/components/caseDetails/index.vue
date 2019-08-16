@@ -1,7 +1,8 @@
 <template>
   <div class="center-content">
     <h2 class="team-title">串并案模型</h2>
-    <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="caseid" @keyup.enter.native="caseSearch"></el-input>
+    <el-input class="search-input" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="caseid" @keyup.enter.native="caseSearch"></el-input>
+    <div class="clear"></div>
     <h3 class="teaminfo" v-if="nodes&&caseid">以{{caseid}}为出发点的串并案社群</h3>
     <div id="graph-container"></div>
     <div class="line-introduced" v-if="edgeinfo">
@@ -36,7 +37,7 @@
         </tbody>
       </table>
     </div>
-    <h3 class="teaminfo">涉案人员</h3>
+    <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
     <involvedCase v-if="showteamAnaly" :caseNum="caseid"></involvedCase>
   </div>
 </template>
@@ -79,14 +80,10 @@ export default {
       this.showteamAnaly = true;
     },
     initData() {
+      // this.$axios.post("/apis/findTeamByRecordId", { recordId: this.caseid })
       this.$axios({
         methods: "get",
         url: "/apis/findTeamByRecordId"
-        // methods: "post",
-        // url:"/apis/findTeamByRecordId",
-        // data:{
-        //   recordId:this.caseid
-        // }
       })
         .then(res => {
           this.graph = res.data;
@@ -172,6 +169,8 @@ export default {
             source: evt.target.getSource().getId(),
             target: evt.target.getTarget().getId()
           };
+          // this.$axios
+          //   .post("/apis/findRelevanceFacotr", params)
           this.$axios({
             methods: "get",
             url: "/apis/findRelevanceFacotr"
@@ -180,12 +179,6 @@ export default {
               this.edgeinfo = res.data;
             })
             .catch({});
-          // this.$axios
-          //   .post("/apis/findRelevanceFacotr", params)
-          //   .then(res => {
-          //     this.edgeinfo = res.data;
-          //   })
-          //   .catch(err => {});
         }
       });
     },
@@ -242,7 +235,12 @@ export default {
 }
 #graph-container {
   width: 80%;
-  height: 450px;
+  height: 530px;
+}
+.search-input {
+  width: 300px;
+  float: left;
+  margin-left: 30px;
 }
 .line-introduced {
 }

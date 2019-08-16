@@ -78,6 +78,7 @@ export default {
   border-left: 1px solid #ebeef5;
   font-size: 14px;
   color: #606266;
+  margin-left: 30px;
 }
 .incorporate th {
   border-right: 1px solid #ebeef5;

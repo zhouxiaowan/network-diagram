@@ -59,4 +59,7 @@ body {
 .el-menu-item {
   text-align: left !important;
 }
+.clear {
+  clear: both;
+}
 </style>

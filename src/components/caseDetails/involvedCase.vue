@@ -70,6 +70,7 @@ export default {
       });
     },
     initData() {
+      // this.$axios.post("/apis/findTeamAndPersonByRecord",{recordId: this.})
       this.$axios({
         methods: "get",
         url: "/apis/findTeamAndPersonByRecord"

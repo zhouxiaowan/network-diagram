@@ -1,5 +1,69 @@
 <template>
-  <div id="graph-lineinfo"></div>
+  <div>
+    <div id="graph-lineinfo"></div>
+    <div class="table-info">
+      <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
+        <tr v-for="(item,index) in edgeinfo.nodes" :key="index">
+          <td style="background-color: #f5f7fa;" v-if="item.data.type==='case'">警情编号</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===0">人名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===1">电子邮件</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===2">手机号码</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===3">固定电话</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===4">车牌号</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===5">网址</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===6">身份证</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===7">地名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===8">机构名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===9">出版物及物品名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===10">公司名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===11">时间</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===12">地址类别</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===13">报案人姓名</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===14">金额</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===15">银行卡号</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===16">微信号</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===17">QQ号</td>
+          <td style="background-color: #f5f7fa;" v-if="item.data.type===18">支付宝账号</td>
+          <td>{{item.data.name}}</td>
+        </tr>
+      </table>
+      <!-- <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
+        <thead>
+          <tr>
+            <th v-for="(item,index) in edgeinfo.nodes" :key="index">
+              <span v-if="item.data.type==='case'">警情编号</span>
+              <span v-if="item.data.type===0">人名</span>
+              <span v-if="item.data.type===1">电子邮件</span>
+              <span v-if="item.data.type===2">手机号码</span>
+              <span v-if="item.data.type===3">固定电话</span>
+              <span v-if="item.data.type===4">车牌号</span>
+              <span v-if="item.data.type===5">网址</span>
+              <span v-if="item.data.type===6">身份证</span>
+              <span v-if="item.data.type===7">地名</span>
+              <span v-if="item.data.type===8">机构名</span>
+              <span v-if="item.data.type===9">出版物及物品名</span>
+              <span v-if="item.data.type===10">公司名</span>
+              <span v-if="item.data.type===11">时间</span>
+              <span v-if="item.data.type===12">地址类别</span>
+              <span v-if="item.data.type===13">报案人姓名</span>
+              <span v-if="item.data.type===14">金额</span>
+              <span v-if="item.data.type===15">银行卡号</span>
+              <span v-if="item.data.type===16">微信号</span>
+              <span v-if="item.data.type===17">QQ号</span>
+              <span v-if="item.data.type===18">支付宝账号</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td v-for="(item,index) in edgeinfo.nodes" :key="index">
+              <span>{{item.data.name}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>-->
+    </div>
+  </div>
 </template>
 <script>
 import ogma from "../../assets/js/ogma2.7.4.min.js";
@@ -20,6 +84,7 @@ export default {
   },
   components: {},
   created() {
+    console.log(this.edgeinfo);
     this.initData();
   },
   props: ["edgeinfo"],
@@ -57,15 +122,30 @@ export default {
       this.ogma.styles.addRule({
         nodeAttributes: {
           icon: {
-            font: "FontAwesome",
+            font: "iconfont",
             content: this.ogma.rules.map({
               field: "type",
               values: {
-                person: "\uf2c0",
-                case: "\uf0f6",
-                tel: "\uf095",
-                card: "\uf2c3",
-                factory: "\uf275"
+                case: "\ue72f",
+                0: "\ue62d",
+                1: "\ue6b0",
+                2: "\ue602",
+                3: "\ue621",
+                4: "\ue625",
+                5: "\ue62b",
+                6: "\ue674",
+                7: "\ue732",
+                8: "\ue660",
+                9: "\ue685",
+                10: "\ue802",
+                11: "\ue72d",
+                12: "\ue7f9",
+                13: "\ue62a",
+                14: "\ue84f",
+                15: "\ue64c",
+                16: "\ue645",
+                17: "\ue62e",
+                18: "\ue647"
               }
             }),
             color: "#fff"
@@ -101,8 +181,9 @@ export default {
 </script>
 <style scoped>
 #graph-lineinfo {
-  width: 80%;
-  height: 500px;
+  width: 50%;
+  height: 700px;
+  float: left;
 }
 .line-introduced {
   position: absolute;
@@ -140,9 +221,12 @@ button {
 }
 .table-info {
   margin-left: 30px;
-  margin-top: 50px;
+  float: left;
+  max-height: 600px;
+  overflow: scroll;
 }
 .incorporate {
+  box-sizing: border-box;
   border-top: 1px solid #ebeef5;
   border-left: 1px solid #ebeef5;
   font-size: 14px;
@@ -164,6 +248,7 @@ button {
   text-overflow: ellipsis;
   vertical-align: middle;
   text-align: left;
+  word-break: keep-all;
 }
 .teaminfo {
   text-align: left;
