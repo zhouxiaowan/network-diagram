@@ -73,10 +73,13 @@ export default {
       this.initData();
     },
     initData() {
-      this.$axios({
-        methods: "get",
-        url: "/apis/findPersonTeamByIdCard"
-      })
+      const params = { idCard: this.idcard };
+      this.$axios
+        .post("/apis/findPersonTeamByIdCard", params)
+        // this.$axios({
+        //   methods: "get",
+        //   url: "/apis/findPersonTeamByIdCard"
+        // })
         .then(res => {
           this.graph = res.data;
         })
@@ -185,20 +188,20 @@ export default {
             source: evt.target.getSource().getId(),
             target: evt.target.getTarget().getId()
           };
-          this.$axios({
-            methods: "get",
-            url: "/apis/findRelevanceFacotr"
-          })
-            .then(res => {
-              this.edgeinfo = res.data;
-            })
-            .catch({});
-          // this.$axios
-          //   .post("/apis/findRelevanceFacotr", params)
+          // this.$axios({
+          //   methods: "get",
+          //   url: "/apis/findRelevanceFacotr"
+          // })
           //   .then(res => {
           //     this.edgeinfo = res.data;
           //   })
-          //   .catch(err => {});
+          //   .catch({});
+          this.$axios
+            .post("/apis/findRelevanceFacotr", params)
+            .then(res => {
+              this.edgeinfo = res.data;
+            })
+            .catch(err => {});
         }
       });
     },

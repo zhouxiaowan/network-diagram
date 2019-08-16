@@ -80,11 +80,12 @@ export default {
       this.showteamAnaly = true;
     },
     initData() {
-      // this.$axios.post("/apis/findTeamByRecordId", { recordId: this.caseid })
-      this.$axios({
-        methods: "get",
-        url: "/apis/findTeamByRecordId"
-      })
+      this.$axios
+        .post("/apis/findTeamByRecordId", { recordId: this.caseid })
+        // this.$axios({
+        //   methods: "get",
+        //   url: "/apis/findTeamByRecordId"
+        // })
         .then(res => {
           this.graph = res.data;
           this.nodes = res.data.nodes;
@@ -169,12 +170,12 @@ export default {
             source: evt.target.getSource().getId(),
             target: evt.target.getTarget().getId()
           };
-          // this.$axios
-          //   .post("/apis/findRelevanceFacotr", params)
-          this.$axios({
-            methods: "get",
-            url: "/apis/findRelevanceFacotr"
-          })
+          this.$axios
+            .post("/apis/findRelevanceFacotr", params)
+            // this.$axios({
+            //   methods: "get",
+            //   url: "/apis/findRelevanceFacotr"
+            // })
             .then(res => {
               this.edgeinfo = res.data;
             })
