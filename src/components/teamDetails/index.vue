@@ -1,7 +1,7 @@
 <template>
   <div class="center-content">
     <h2 class="team-title">团伙分析模型</h2>
-    <el-input style="width:300px" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
+    <el-input style="width:300px" class="search-input" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="idcard" @keyup.enter.native="idSearch"></el-input>
     <div id="graph-container"></div>
     <div class="degree-team" v-if="graph">
       <h3 style="margin-left:35px">团伙置信度</h3>
@@ -74,12 +74,12 @@ export default {
     },
     initData() {
       const params = { idCard: this.idcard };
-      this.$axios
-        .post("http://50.64.129.46:8030/findPersonTeamByIdCard", params)
-        // this.$axios({
-        //   methods: "get",
-        //   url: "/apis/findPersonTeamByIdCard"
-        // })
+      // this.$axios
+      //   .post("http://50.64.129.46:8030/findPersonTeamByIdCard", params)
+      this.$axios({
+        methods: "get",
+        url: "/apis/findPersonTeamByIdCard"
+      })
         .then(res => {
           this.graph = res.data.result;
         })
@@ -188,20 +188,20 @@ export default {
             source: evt.target.getSource().getId(),
             target: evt.target.getTarget().getId()
           };
-          // this.$axios({
-          //   methods: "get",
-          //   url: "/apis/findRelevanceFacotr"
-          // })
-          //   .then(res => {
-          //     this.edgeinfo = res.data;
-          //   })
-          //   .catch({});
-          this.$axios
-            .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
+          this.$axios({
+            methods: "get",
+            url: "/apis/findRelevanceFacotr"
+          })
             .then(res => {
               this.edgeinfo = res.data.result;
             })
-            .catch(err => {});
+            .catch({});
+          // this.$axios
+          //   .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
+          //   .then(res => {
+          //     this.edgeinfo = res.data.result;
+          //   })
+          //   .catch(err => {});
         }
       });
     },
@@ -304,6 +304,10 @@ button {
 }
 .degree-team ul li {
   list-style: none;
+}
+.search-input {
+  float: left;
+  margin-left: 30px;
 }
 </style>
 

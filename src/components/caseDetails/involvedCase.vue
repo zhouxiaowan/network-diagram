@@ -70,15 +70,13 @@ export default {
       });
     },
     initData() {
-      this.$axios
-        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: this.caseNum })
-        // this.$axios({
-        //   methods: "get",
-        //   url: "/apis/findTeamAndPersonByRecord"
-        //   // data: {
-        //   //   recordId: this.
-        //   // }
-        // })
+      this.$axios({
+        methods: "get",
+        url: "/apis/findTeamAndPersonByRecord"
+        // data: {
+        //   recordId: this.
+        // }
+      })
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
