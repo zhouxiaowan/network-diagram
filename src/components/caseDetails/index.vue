@@ -165,7 +165,7 @@ export default {
       //   }
       // });
       this.ogma.events.onClick(evt => {
-        this.this.edgeinfo = null;
+        this.edgeinfo = null;
         if (evt.target && !evt.target.isNode) {
           const params = {
             source: evt.target.getSource().getId(),
