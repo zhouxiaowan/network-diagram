@@ -222,8 +222,10 @@ button {
 .table-info {
   margin-left: 30px;
   float: left;
-  max-height: 600px;
-  overflow: scroll;
+  height: 700px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
 }
 .incorporate {
   box-sizing: border-box;

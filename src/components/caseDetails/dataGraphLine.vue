@@ -2,32 +2,33 @@
   <div>
     <div id="graph-lineinfo"></div>
     <div class="table-info">
-      <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
-        <tr v-for="(item,index) in edgeinfo.nodes" :key="index">
-          <td style="background-color: #f5f7fa;" v-if="item.data.type==='case'">警情编号</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===0">人名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===1">电子邮件</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===2">手机号码</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===3">固定电话</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===4">车牌号</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===5">网址</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===6">身份证</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===7">地名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===8">机构名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===9">出版物及物品名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===10">公司名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===11">时间</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===12">地址类别</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===13">报案人姓名</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===14">金额</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===15">银行卡号</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===16">微信号</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===17">QQ号</td>
-          <td style="background-color: #f5f7fa;" v-if="item.data.type===18">支付宝账号</td>
-          <td>{{item.data.name}}</td>
-        </tr>
-      </table>
-      <!-- <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
+      <div>
+        <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
+          <tr v-for="(item,index) in edgeinfo.nodes" :key="index">
+            <td style="background-color: #f5f7fa;" v-if="item.data.type==='case'">警情编号</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===0">人名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===1">电子邮件</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===2">手机号码</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===3">固定电话</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===4">车牌号</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===5">网址</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===6">身份证</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===7">地名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===8">机构名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===9">出版物及物品名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===10">公司名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===11">时间</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===12">地址类别</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===13">报案人姓名</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===14">金额</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===15">银行卡号</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===16">微信号</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===17">QQ号</td>
+            <td style="background-color: #f5f7fa;" v-if="item.data.type===18">支付宝账号</td>
+            <td>{{item.data.name}}</td>
+          </tr>
+        </table>
+        <!-- <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
         <thead>
           <tr>
             <th v-for="(item,index) in edgeinfo.nodes" :key="index">
@@ -61,7 +62,8 @@
             </td>
           </tr>
         </tbody>
-      </table>-->
+        </table>-->
+      </div>
     </div>
     <div class="clear"></div>
   </div>
@@ -241,8 +243,10 @@ button {
 .table-info {
   margin-left: 30px;
   float: left;
-  max-height: 600px;
-  overflow: scroll;
+  height: 700px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
 }
 .incorporate {
   box-sizing: border-box;

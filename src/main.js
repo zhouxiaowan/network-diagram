@@ -5,7 +5,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router/index.js';
 import globalVariable from './assets/js/global_variable.js'
+// import store from './store/store'
 
+// axios.defaults.baseURL = "http://192.168.0.104:5000"
 //设置axios为form-data
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.get['Content-Type'] = 'application/x-www-form-urlencoded';

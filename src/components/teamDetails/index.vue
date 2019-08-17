@@ -7,7 +7,7 @@
       <h3 style="margin-left:35px">团伙置信度</h3>
       <ul>
         <li :key="index" v-for="(item,index) in graph.nodes">
-          <p v-if="item.data.score">{{item.data.name}}:{{(item.data.score*100).toFixed(2)}}</p>
+          <p v-if="item.data.score">{{item.data.name}}:{{(item.data.score*100).toFixed(2)}}%</p>
         </li>
       </ul>
     </div>

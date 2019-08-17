@@ -73,9 +73,6 @@ export default {
       this.$axios({
         methods: "get",
         url: "/apis/findTeamAndPersonByRecord"
-        // data: {
-        //   recordId: this.
-        // }
       })
         .then(res => {
           this.graphteam = res.data.result;
