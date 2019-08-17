@@ -27,41 +27,6 @@
           <td>{{item.data.name}}</td>
         </tr>
       </table>
-      <!-- <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
-        <thead>
-          <tr>
-            <th v-for="(item,index) in edgeinfo.nodes" :key="index">
-              <span v-if="item.data.type==='case'">警情编号</span>
-              <span v-if="item.data.type===0">人名</span>
-              <span v-if="item.data.type===1">电子邮件</span>
-              <span v-if="item.data.type===2">手机号码</span>
-              <span v-if="item.data.type===3">固定电话</span>
-              <span v-if="item.data.type===4">车牌号</span>
-              <span v-if="item.data.type===5">网址</span>
-              <span v-if="item.data.type===6">身份证</span>
-              <span v-if="item.data.type===7">地名</span>
-              <span v-if="item.data.type===8">机构名</span>
-              <span v-if="item.data.type===9">出版物及物品名</span>
-              <span v-if="item.data.type===10">公司名</span>
-              <span v-if="item.data.type===11">时间</span>
-              <span v-if="item.data.type===12">地址类别</span>
-              <span v-if="item.data.type===13">报案人姓名</span>
-              <span v-if="item.data.type===14">金额</span>
-              <span v-if="item.data.type===15">银行卡号</span>
-              <span v-if="item.data.type===16">微信号</span>
-              <span v-if="item.data.type===17">QQ号</span>
-              <span v-if="item.data.type===18">支付宝账号</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td v-for="(item,index) in edgeinfo.nodes" :key="index">
-              <span>{{item.data.name}}</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>-->
     </div>
   </div>
 </template>
@@ -84,10 +49,14 @@ export default {
   },
   components: {},
   created() {
-    console.log(this.edgeinfo);
     this.initData();
   },
   props: ["edgeinfo"],
+  watch: {
+    edgeinfo() {
+      this.initData();
+    }
+  },
   methods: {
     initData() {
       if (this.edgeinfo) {
@@ -182,7 +151,7 @@ export default {
 <style scoped>
 #graph-lineinfo {
   width: 50%;
-  height: 700px;
+  height: 400px;
   float: left;
 }
 .line-introduced {
@@ -222,7 +191,7 @@ button {
 .table-info {
   margin-left: 30px;
   float: left;
-  height: 700px;
+  height: 400px;
   overflow: auto;
   display: flex;
   align-items: center;

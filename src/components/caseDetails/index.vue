@@ -19,7 +19,6 @@
             <th>报警类型</th>
             <th>报警内容</th>
             <th>报警人</th>
-            <!-- <th>处警人</th> -->
             <th>处警结果</th>
           </tr>
         </thead>
@@ -31,14 +30,13 @@
             <td v-if="item.data.type === 'case'">{{item.data.ptype}}</td>
             <td v-if="item.data.type === 'case'">{{item.data.content}}</td>
             <td v-if="item.data.type === 'case'">{{item.data.rname}}</td>
-            <!-- <td v-if="item.data.type === 'case'">{{item.data.dname}}</td> -->
             <td v-if="item.data.type === 'case'">{{item.data.proceresult}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
-    <involvedCase v-if="showteamAnaly" :caseNum="caseid"></involvedCase>
+    <involvedCase v-if="showteamAnaly" :caseNum="caseid" v-model="value"></involvedCase>
   </div>
 </template>
 <script>
@@ -61,7 +59,8 @@ export default {
         duration: 300, // Duration of the animation
         nodeDistance: 15, // Number of pixels that separate nodes horizontally in the layout.
         levelDistance: 50 // Number of pixels between each layer in the layout.
-      }
+      },
+      value: false
     };
   },
   props: ["graphData"],
@@ -78,6 +77,7 @@ export default {
     caseSearch() {
       this.initData();
       this.showteamAnaly = true;
+      this.value = true;
     },
     initData() {
       this.$axios
