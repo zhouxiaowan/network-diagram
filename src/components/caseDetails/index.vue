@@ -19,7 +19,7 @@
             <th>报警类型</th>
             <th>报警内容</th>
             <th>报警人</th>
-            <th>处警人</th>
+            <!-- <th>处警人</th> -->
             <th>处警结果</th>
           </tr>
         </thead>
@@ -31,7 +31,7 @@
             <td v-if="item.data.type === 'case'">{{item.data.ptype}}</td>
             <td v-if="item.data.type === 'case'">{{item.data.content}}</td>
             <td v-if="item.data.type === 'case'">{{item.data.rname}}</td>
-            <td v-if="item.data.type === 'case'">{{item.data.dname}}</td>
+            <!-- <td v-if="item.data.type === 'case'">{{item.data.dname}}</td> -->
             <td v-if="item.data.type === 'case'">{{item.data.proceresult}}</td>
           </tr>
         </tbody>
@@ -165,6 +165,7 @@ export default {
       //   }
       // });
       this.ogma.events.onClick(evt => {
+        this.this.edgeinfo = null;
         if (evt.target && !evt.target.isNode) {
           const params = {
             source: evt.target.getSource().getId(),
