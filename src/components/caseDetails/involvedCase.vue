@@ -1,5 +1,5 @@
 <template>
-  <div :value="value">
+  <div>
     <div id="graph-team"></div>
     <div v-show="handleNode">
       <div>操作节点:{{sigleNode}}</div>
@@ -61,7 +61,7 @@ export default {
   watch: {
     value() {
       if (this.value) {
-        // console.log("value:", this.value);
+        console.log("value:", this.value);
         this.initData();
       }
     }
@@ -187,7 +187,6 @@ export default {
 
     runLayout(options) {
       const self = this;
-      console.log(this.ogma.layouts);
       this.ogma.layouts.forceLink(options).then(function() {
         self.ogma.view.locateGraph({
           easing: "linear",
