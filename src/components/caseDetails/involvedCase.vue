@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :value="value">
     <div id="graph-team"></div>
     <div v-show="handleNode">
       <div>操作节点:{{sigleNode}}</div>
@@ -53,12 +53,19 @@ export default {
       }
     };
   },
-  props: ["caseNum"],
+  props: ["caseNum", "value"],
   components: {},
   created() {
     this.initData();
   },
-  watch: {},
+  watch: {
+    value() {
+      if (this.value) {
+        // console.log("value:", this.value);
+        this.initData();
+      }
+    }
+  },
   methods: {
     teamAnaly() {
       const params = {
@@ -77,6 +84,7 @@ export default {
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
+          this.$emit("input", false);
         })
         .then(res => {
           this.initOgma();

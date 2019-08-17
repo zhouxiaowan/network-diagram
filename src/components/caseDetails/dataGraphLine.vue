@@ -90,6 +90,11 @@ export default {
     this.initData();
   },
   props: ["edgeinfo"],
+  watch: {
+    edgeinfo() {
+      this.initData();
+    }
+  },
   methods: {
     initData() {
       if (this.edgeinfo) {
@@ -203,7 +208,7 @@ export default {
 <style scoped>
 #graph-lineinfo {
   width: 50%;
-  height: 700px;
+  height: 400px;
   float: left;
 }
 .line-introduced {
@@ -243,7 +248,7 @@ button {
 .table-info {
   margin-left: 30px;
   float: left;
-  height: 700px;
+  height: 400px;
   overflow: auto;
   display: flex;
   align-items: center;

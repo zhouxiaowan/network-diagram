@@ -292,315 +292,60 @@ app.get('/findRelevanceFacotr', (req, res) => {
         "result": {
             "nodes": [{
                     "data": {
-                        "address": "市区丽都花园148幢503室",
-                        "rname": null,
-                        "name": "J3202150516223683515",
-                        "ptype": "其他日常生活求助",
-                        "time": null,
-                        "dname": null,
+                        "address": "申港申裕苑2期4幢103室",
+                        "rname": "匿名",
+                        "name": "J3202816717081573347",
+                        "ptype": "260503",
+                        "time": "20170815",
+                        "dname": "827359,001617                     ",
                         "type": "case",
-                        "content": "早上我报过警的，现我的车子在辽宁找到了，那边已经立案，这边也需要报警立案。我现在新华三村20幢405室。"
+                        "content": "有一个人一直呆在我家不肯走，问其何事称因为债务纠纷，告知可跟对方好好协商或跟对方协商分期付款，协商不了可走司法途径，其称协商不了，向其解释不通。"
                     },
-                    "id": "J3202150516223683515"
+                    "id": "J3202816717081573347"
                 },
                 {
                     "data": {
-                        "address": "市区丽都花园148幢503室",
-                        "rname": null,
-                        "name": "J3202150516094076349",
-                        "ptype": "其他经济纠纷",
-                        "time": null,
-                        "dname": null,
+                        "address": "申港申裕苑二期2栋",
+                        "rname": "匿名",
+                        "name": "J3202816717081259572",
+                        "ptype": "260503",
+                        "time": "20170812",
+                        "dname": "003600,001617                     ",
                         "type": "case",
-                        "content": "我的车子被人偷走了，被人开到山东去了，我老公告诉我车子里有40万。经查此号码昨天多次报警老公欠人钱有经济纠纷。"
+                        "content": "一大早有人开了车在放高音喇叭，欠债还钱之类的。应该是姓毛的人家。"
                     },
-                    "id": "J3202150516094076349"
+                    "id": "J3202816717081259572"
                 },
                 {
                     "data": {
-                        "name": "丽都城市花园148幢503室",
-                        "type": 7
+                        "name": "姜亮亮",
+                        "type": 0
                     },
                     "id": "factor0"
                 },
                 {
                     "data": {
-                        "name": "涂以兰",
-                        "type": 7
+                        "name": "341223199301014330",
+                        "type": 6
                     },
                     "id": "factor1"
-                },
-                {
-                    "data": {
-                        "name": "5月15日21时02分",
-                        "type": 11
-                    },
-                    "id": "factor2"
-                },
-                {
-                    "data": {
-                        "name": "苏BV052G",
-                        "type": 4
-                    },
-                    "id": "factor3"
-                },
-                {
-                    "data": {
-                        "name": "丽都城市花园148幢503室",
-                        "type": 7
-                    },
-                    "id": "factor4"
-                },
-                {
-                    "data": {
-                        "name": "涂以兰",
-                        "type": 7
-                    },
-                    "id": "factor5"
-                },
-                {
-                    "data": {
-                        "name": "5月15日21时02分",
-                        "type": 11
-                    },
-                    "id": "factor6"
-                },
-                {
-                    "data": {
-                        "name": "苏BV052G",
-                        "type": 4
-                    },
-                    "id": "factor7"
-                },
-                {
-                    "data": {
-                        "name": "丽都城市花园148幢503室",
-                        "type": 7
-                    },
-                    "id": "factor8"
-                },
-                {
-                    "data": {
-                        "name": "涂以兰",
-                        "type": 7
-                    },
-                    "id": "factor9"
-                },
-                {
-                    "data": {
-                        "name": "5月15日21时02分",
-                        "type": 11
-                    },
-                    "id": "factor10"
-                },
-                {
-                    "data": {
-                        "name": "苏BV052G",
-                        "type": 4
-                    },
-                    "id": "factor11"
-                },
-                {
-                    "data": {
-                        "name": "孙磊",
-                        "type": 0
-                    },
-                    "id": "factor12"
-                },
-                {
-                    "data": {
-                        "name": "王绍君",
-                        "type": 0
-                    },
-                    "id": "factor13"
-                },
-                {
-                    "data": {
-                        "name": "屈小强",
-                        "type": 0
-                    },
-                    "id": "factor14"
-                },
-                {
-                    "data": {
-                        "name": "丽都城市花园148幢503室",
-                        "type": 7
-                    },
-                    "id": "factor15"
-                },
-                {
-                    "data": {
-                        "name": "涂以兰",
-                        "type": 7
-                    },
-                    "id": "factor16"
-                },
-                {
-                    "data": {
-                        "name": "5月15日21时02分",
-                        "type": 11
-                    },
-                    "id": "factor17"
-                },
-                {
-                    "data": {
-                        "name": "苏BV052G",
-                        "type": 4
-                    },
-                    "id": "factor18"
                 }
             ],
             "edges": [{
-                    "source": "J3202150516223683515",
+                    "source": "J3202816717081573347",
                     "target": "factor0"
                 },
                 {
                     "source": "factor0",
-                    "target": "J3202150516094076349"
+                    "target": "J3202816717081259572"
                 },
                 {
-                    "source": "J3202150516223683515",
+                    "source": "J3202816717081573347",
                     "target": "factor1"
                 },
                 {
                     "source": "factor1",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor2"
-                },
-                {
-                    "source": "factor2",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor3"
-                },
-                {
-                    "source": "factor3",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor4"
-                },
-                {
-                    "source": "factor4",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor5"
-                },
-                {
-                    "source": "factor5",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor6"
-                },
-                {
-                    "source": "factor6",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor7"
-                },
-                {
-                    "source": "factor7",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor8"
-                },
-                {
-                    "source": "factor8",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor9"
-                },
-                {
-                    "source": "factor9",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor10"
-                },
-                {
-                    "source": "factor10",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor11"
-                },
-                {
-                    "source": "factor11",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor12"
-                },
-                {
-                    "source": "factor12",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor13"
-                },
-                {
-                    "source": "factor13",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor14"
-                },
-                {
-                    "source": "factor14",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor15"
-                },
-                {
-                    "source": "factor15",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor16"
-                },
-                {
-                    "source": "factor16",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor17"
-                },
-                {
-                    "source": "factor17",
-                    "target": "J3202150516094076349"
-                },
-                {
-                    "source": "J3202150516223683515",
-                    "target": "factor18"
-                },
-                {
-                    "source": "factor18",
-                    "target": "J3202150516094076349"
+                    "target": "J3202816717081259572"
                 }
             ]
         }
