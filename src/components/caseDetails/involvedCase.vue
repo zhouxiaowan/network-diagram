@@ -57,6 +57,7 @@ export default {
   components: {},
   created() {
     this.initData();
+    debugger;
   },
   watch: {
     value() {
