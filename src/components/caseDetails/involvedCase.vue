@@ -58,13 +58,13 @@ export default {
   created() {
     this.initData();
   },
-  // watch: {
-  //   value() {
-  //     if (this.value) {
-  //       this.initData();
-  //     }
-  //   }
-  // },
+  watch: {
+    value() {
+      if (this.value) {
+        this.initData();
+      }
+    }
+  },
   methods: {
     teamAnaly() {
       const params = {
