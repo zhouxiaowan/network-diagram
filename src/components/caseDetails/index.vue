@@ -78,6 +78,8 @@ export default {
       this.initData();
       this.showteamAnaly = true;
       this.value = true;
+      this.$refs.mychild.graphteam = "";
+      this.$refs.mychild.nodesteam = "";
       this.$refs.mychild.initData(this.caseid);
     },
     initData() {
