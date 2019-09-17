@@ -89,6 +89,7 @@ export default {
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
+          console.log("this.graphteam:", this.graphteam, "this.nodesteam", this.nodesteam);
           this.$emit("input", false);
         })
         .then(res => {
@@ -102,6 +103,7 @@ export default {
         renderer: "canvas"
       });
       this.ogma.setGraph(this.graphteam);
+      console.log("initOgma-setGraph");
       this.runLayout(this.defaultLayoutOptions);
       // 加载节点和线的样式
       this.initDefaultNodes();
