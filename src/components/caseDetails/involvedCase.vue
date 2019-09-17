@@ -56,7 +56,6 @@ export default {
   props: ["caseNum", "value"],
   components: {},
   created() {
-    // this.initData();
     console.log("created之后");
   },
   // watch: {
@@ -192,10 +191,10 @@ export default {
     },
 
     runLayout(options) {
-      const self = this;
+      // const self = this;
       console.log(this.ogma.layouts);
-      this.ogma.layouts.forceLink(options).then(function() {
-        self.ogma.view.locateGraph({
+      this.ogma.layouts.forceLink(options).then(() => {
+        this.ogma.view.locateGraph({
           easing: "linear",
           duration: 300
         });
