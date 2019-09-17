@@ -77,6 +77,7 @@ export default {
       });
     },
     initData(caseid) {
+      console.log("this.graphteam0:", this.graphteam, "this.nodesteam0", this.nodesteam);
       this.$axios
         .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: caseid })
         // this.$axios({
