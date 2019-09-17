@@ -239,7 +239,7 @@ export default {
       this.graphteam = null;
       this.nodesteam = null;
       this.$axios
-        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: caseid })
+        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: this.caseid })
         // this.$axios({
         //   methods: "get",
         //   url: "/apis/findTeamAndPersonByRecord"
