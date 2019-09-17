@@ -36,7 +36,7 @@
       </table>
     </div>
     <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
-    <involvedCase v-if="showteamAnaly" :caseNum="caseid" v-model="value"></involvedCase>
+    <involvedCase :caseNum="caseid" v-model="value" ref="mychild"></involvedCase>
   </div>
 </template>
 <script>
@@ -78,6 +78,7 @@ export default {
       this.initData();
       this.showteamAnaly = true;
       this.value = true;
+      this.$refs.mychild.initData();
     },
     initData() {
       this.$axios
