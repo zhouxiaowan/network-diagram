@@ -78,6 +78,9 @@ export default {
       this.initData();
       this.showteamAnaly = true;
       this.value = true;
+      this.$router.push({
+        path: "/caseDetails"
+      });
       this.$refs.mychild.graphteam = "";
       this.$refs.mychild.nodesteam = "";
       this.$refs.mychild.initData(this.caseid);
