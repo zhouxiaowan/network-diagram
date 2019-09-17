@@ -56,17 +56,17 @@ export default {
   props: ["caseNum", "value"],
   components: {},
   created() {
-    this.initData();
-    console.log("第一次进入？");
+    // this.initData();
+    console.log("created之后");
   },
-  watch: {
-    value() {
-      if (this.value) {
-        this.initData();
-        console.log("二");
-      }
-    }
-  },
+  // watch: {
+  //   value() {
+  //     if (this.value) {
+  //       this.initData();
+  //       console.log("二");
+  //     }
+  //   }
+  // },
   methods: {
     teamAnaly() {
       const params = {
@@ -77,9 +77,9 @@ export default {
         query: params
       });
     },
-    initData() {
+    initData(caseid) {
       this.$axios
-        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: this.caseNum })
+        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: caseid })
         // this.$axios({
         //   methods: "get",
         //   url: "/apis/findTeamAndPersonByRecord"
