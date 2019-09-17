@@ -199,7 +199,7 @@ export default {
       // const self = this;
       console.log(this.ogma.layouts);
       this.ogma.layouts.forceLink(options).then(() => {
-        this.ogma.view.hierarchical({
+        this.ogma.view.locateGraph({
           easing: "linear",
           duration: 300
         });
