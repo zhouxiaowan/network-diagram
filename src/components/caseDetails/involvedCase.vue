@@ -1,6 +1,6 @@
 <template>
   <div :value="value">
-    <div id="graph-team"></div>
+    <!-- <div id="graph-team"></div> -->
     <div v-show="handleNode">
       <div>操作节点:{{sigleNode}}</div>
       <div class="teamAnaly" @click="teamAnaly">跳转到该节点团伙分析页面</div>

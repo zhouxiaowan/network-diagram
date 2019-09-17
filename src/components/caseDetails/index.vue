@@ -36,6 +36,7 @@
       </table>
     </div>
     <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
+    <div id="graph-team"></div>
     <involvedCase :caseNum="caseid" v-model="value" ref="mychild"></involvedCase>
   </div>
 </template>
@@ -60,7 +61,10 @@ export default {
         nodeDistance: 15, // Number of pixels that separate nodes horizontally in the layout.
         levelDistance: 50 // Number of pixels between each layer in the layout.
       },
-      value: false
+      value: false,
+      graphteam: null,
+      nodesteam: null,
+      handleNode: false
     };
   },
   props: ["graphData"],
@@ -78,12 +82,10 @@ export default {
       this.initData();
       this.showteamAnaly = true;
       this.value = true;
-      // this.$router.push({
-      //   path: "/caseDetails"
-      // });
-      this.$refs.mychild.graphteam = "";
-      this.$refs.mychild.nodesteam = "";
-      this.$refs.mychild.initData(this.caseid);
+      this.initData2();
+      // this.$refs.mychild.graphteam = "";
+      // this.$refs.mychild.nodesteam = "";
+      // this.$refs.mychild.initData(this.caseid);
     },
     initData() {
       this.$axios
@@ -230,6 +232,136 @@ export default {
     },
     filterHandler(value, row, column) {
       return row.data.type === value;
+    },
+    //第二个图
+    initData2() {
+      console.log("this.graphteam0:", this.graphteam, "this.nodesteam0", this.nodesteam);
+      this.graphteam = null;
+      this.nodesteam = null;
+      this.$axios
+        .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: caseid })
+        // this.$axios({
+        //   methods: "get",
+        //   url: "/apis/findTeamAndPersonByRecord"
+        //   // data: {
+        //   //   recordId: this.
+        //   // }
+        // })
+        .then(res => {
+          this.graphteam = res.data.result;
+          this.nodesteam = res.data.result.nodes;
+          console.log("this.graphteam:", this.graphteam, "this.nodesteam", this.nodesteam);
+          this.$emit("input", false);
+        })
+        .then(res => {
+          this.initOgma2();
+        })
+        .catch(err => {});
+    },
+    initOgma2() {
+      this.ogma = new Ogma({
+        container: "graph-team",
+        renderer: "canvas"
+      });
+      this.ogma.setGraph(this.graphteam);
+      console.log("initOgma-setGraph");
+      this.runLayout2(this.defaultLayoutOptions);
+      // 加载节点和线的样式
+      this.initDefaultNodes2();
+      this.initDefaultEage2();
+      // 加载一些默认事件
+      this.initDefaultListeners();
+    },
+    initDefaultEage2() {
+      this.ogma.getEdges().setAttributes(
+        {
+          color: "#333",
+          width: 1
+        },
+        5000
+      );
+    },
+    initDefaultNodes2() {
+      // 基本节点的样式规则
+      this.ogma.styles.addRule({
+        nodeAttributes: {
+          icon: {
+            font: "FontAwesome",
+            content: this.ogma.rules.map({
+              field: "type",
+              values: {
+                case: "\uf0f6",
+                tel: "\uf095",
+                tool: "\uf085",
+                person: "\uf2c0"
+              }
+            }),
+            color: "#fff"
+          },
+          color: this.ogma.rules.map({
+            field: "type",
+            values: {
+              person: "#1989fa",
+              manufacturer: "limegreen",
+              device: "orangered"
+            }
+          }),
+          text: {
+            position: "bottom",
+            content: function(node) {
+              return node.getData("name");
+            }
+          }
+        }
+      });
+      // 生成邻近节点的样式规则
+      this.ogma.styles.addRule({
+        nodeSelector: function(node) {
+          return node.getData("type") === "country";
+        },
+        nodeAttributes: {
+          image: function(node) {
+            return "../flags/" + node.getData("iso") + ".svg";
+          },
+          text: function(node) {
+            return node.getData("iso");
+          },
+          radius: function(node) {
+            return 5 + node.getData("nb_parts_produced");
+          },
+          innerStroke: {
+            color: "black"
+          }
+        }
+      });
+    },
+    // 添加事件
+    initDefaultListeners2() {
+      this.ogma.events.onClick(evt => {
+        if (evt.target && evt.target.isNode) {
+          if (evt.target.getData("type") === "person") {
+            this.handleNode = true;
+            this.sigleNode = evt.target.getData("name");
+            this.sigleNodeId = evt.target.getId();
+          } else {
+            this.handleNode = false;
+          }
+
+          // this.ogma.removeNode(evt.target.getId());
+          // console.log(evt.target.getPosition());
+        }
+      });
+    },
+
+    runLayout2(options) {
+      // const self = this;
+      console.log(this.ogma.layouts);
+      this.ogma.layouts.forceLink(options).then(() => {
+        this.ogma.view.locateGraph({
+          easing: "linear",
+          duration: 300
+        });
+      });
     }
   }
 };
