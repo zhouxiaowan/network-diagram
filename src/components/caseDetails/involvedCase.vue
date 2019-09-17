@@ -55,18 +55,6 @@ export default {
   },
   props: ["caseNum", "value"],
   components: {},
-  created() {
-    this.initData();
-    debugger;
-  },
-  watch: {
-    value() {
-      if (this.value) {
-        console.log("value:", this.value);
-        this.initData();
-      }
-    }
-  },
   methods: {
     teamAnaly() {
       const params = {
@@ -77,11 +65,11 @@ export default {
         query: params
       });
     },
-    initData() {
-      this.$axios({
-        methods: "get",
-        url: "/apis/findTeamAndPersonByRecord"
-      })
+    initData(caseid) {
+      this.$axios
+        .post("/apis/findTeamAndPersonByRecord", {
+          caseid: caseid
+        })
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
