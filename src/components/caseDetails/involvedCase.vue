@@ -57,11 +57,13 @@ export default {
   components: {},
   created() {
     this.initData();
+    console.log("第一次进入？");
   },
   watch: {
     value() {
       if (this.value) {
         this.initData();
+        console.log("二");
       }
     }
   },
