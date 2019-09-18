@@ -76,7 +76,7 @@ export default {
   methods: {
     caseSearch() {
       sessionStorage.caseid = this.caseid;
-      this.$bus.$emit("reload");
+      // this.$bus.$emit("reload");
       this.initData();
       sessionStorage.showteamAnaly = true;
       this.value = true;

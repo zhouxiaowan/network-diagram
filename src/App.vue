@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="graph">
-      <router-view v-if="isRouterAlive"></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>

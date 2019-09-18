@@ -180,12 +180,7 @@ export default {
     runLayout(options) {
       // const self = this;
       console.log(this.ogma.layouts);
-      this.ogma.layouts.forceLink(options).then(() => {
-        this.ogma.view.locateGraph({
-          easing: "linear",
-          duration: 300
-        });
-      });
+      this.ogma.layouts.forceLink({ locate: true });
     }
   }
 };
