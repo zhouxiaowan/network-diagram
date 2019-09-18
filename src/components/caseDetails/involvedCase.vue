@@ -74,7 +74,6 @@ export default {
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
-          console.log("this.graphteam:", this.graphteam, "this.nodesteam", this.nodesteam);
           this.$emit("input", false);
         })
         .then(res => {
@@ -178,7 +177,6 @@ export default {
     },
 
     runLayout(options) {
-      // const self = this;
       console.log(this.ogma.layouts);
       this.ogma.layouts.forceLink({ locate: true });
     }

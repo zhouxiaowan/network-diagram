@@ -75,14 +75,9 @@ export default {
   watch: {},
   methods: {
     caseSearch() {
-      // sessionStorage.caseid = this.caseid;
-      // this.$bus.$emit("reload");
       this.initData();
       this.showteamAnaly = true;
-      // sessionStorage.showteamAnaly = true;
       this.value = true;
-      // this.$refs.mychild.graphteam = "";
-      // this.$refs.mychild.nodesteam = "";
       this.$refs.mychild.initData(this.caseid);
     },
     initData() {
@@ -175,10 +170,6 @@ export default {
           };
           this.$axios
             .post("http://50.64.129.46:8030/findRelevanceFacotr", params)
-            // this.$axios({
-            //   methods: "get",
-            //   url: "/apis/findRelevanceFacotr"
-            // })
             .then(res => {
               this.edgeinfo = res.data.result;
             })

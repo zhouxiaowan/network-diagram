@@ -9,25 +9,10 @@
 <script>
 export default {
   name: "app",
-  data() {
-    return {
-      isRouterAlive: true
-    };
-  },
+  data() {},
   components: {},
-  mounted() {
-    this.$bus.$on("reload", () => {
-      this.reload();
-    });
-  },
-  methods: {
-    reload() {
-      this.isRouterAlive = false;
-      this.$nextTick(() => {
-        this.isRouterAlive = true;
-      });
-    }
-  }
+
+  methods: {}
 };
 </script>
 
