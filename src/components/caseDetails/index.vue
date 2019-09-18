@@ -4,7 +4,7 @@
     <el-input class="search-input" placeholder="请输入内容" prefix-icon="el-icon-search" v-model="caseid" @keyup.enter.native="caseSearch"></el-input>
     <div class="clear"></div>
     <h3 class="teaminfo" v-if="nodes&&caseid">以{{caseid}}为出发点的串并案社群</h3>
-    <!-- <div id="graph-container"></div> -->
+    <div id="graph-container"></div>
     <div class="line-introduced" v-if="edgeinfo">
       <p class="node-detaile">串并原因：</p>
       <dataGraphLine :edgeinfo="edgeinfo"></dataGraphLine>
@@ -75,23 +75,16 @@ export default {
   watch: {},
   methods: {
     caseSearch() {
-      // this.initData();
+      this.initData();
       this.showteamAnaly = true;
       this.value = true;
-      // this.$router.push({
-      //   path: "/caseDetails"
-      // });
-      this.$refs.mychild.graphteam = "";
-      this.$refs.mychild.nodesteam = "";
+      // this.$refs.mychild.graphteam = "";
+      // this.$refs.mychild.nodesteam = "";
       this.$refs.mychild.initData(this.caseid);
     },
     initData() {
       this.$axios
         .post("http://50.64.129.46:8030/findTeamByRecordId", { recordId: this.caseid })
-        // this.$axios({
-        //   methods: "get",
-        //   url: "/apis/findTeamByRecordId"
-        // })
         .then(res => {
           this.graph = res.data.result;
           this.nodes = res.data.result.nodes;
