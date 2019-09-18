@@ -35,7 +35,7 @@
         </tbody>
       </table>
     </div>
-    <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
+    <h3 class="teaminfo" v-if="showteamAnaly&&caseid">涉案人员</h3>
     <involvedCase :caseNum="caseid" v-model="value" ref="mychild"></involvedCase>
   </div>
 </template>
@@ -47,9 +47,9 @@ import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
-      caseid: "",
+      caseid: sessionStorage.caseid || "",
       showGraph: false,
-      showteamAnaly: false,
+      showteamAnaly: sessionStorage.showteamAnaly || false,
       graph: null,
       nodes: null,
       edgeinfo: null,
@@ -75,8 +75,10 @@ export default {
   watch: {},
   methods: {
     caseSearch() {
+      sessionStorage.caseid = this.caseid;
+      this.$bus.$emit("reload");
       this.initData();
-      this.showteamAnaly = true;
+      sessionStorage.showteamAnaly = true;
       this.value = true;
       // this.$refs.mychild.graphteam = "";
       // this.$refs.mychild.nodesteam = "";

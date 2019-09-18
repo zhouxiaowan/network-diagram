@@ -55,17 +55,7 @@ export default {
   },
   props: ["caseNum", "value"],
   components: {},
-  created() {
-    console.log("created之后");
-  },
-  // watch: {
-  //   value() {
-  //     if (this.value) {
-  //       this.initData();
-  //       console.log("二");
-  //     }
-  //   }
-  // },
+  created() {},
   methods: {
     teamAnaly() {
       const params = {
@@ -77,18 +67,10 @@ export default {
       });
     },
     initData(caseid) {
-      console.log("this.graphteam0:", this.graphteam, "this.nodesteam0", this.nodesteam);
       this.graphteam = null;
       this.nodesteam = null;
       this.$axios
         .post("http://50.64.129.46:8030/findTeamAndPersonByRecord", { recordId: caseid })
-        // this.$axios({
-        //   methods: "get",
-        //   url: "/apis/findTeamAndPersonByRecord"
-        //   // data: {
-        //   //   recordId: this.
-        //   // }
-        // })
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
