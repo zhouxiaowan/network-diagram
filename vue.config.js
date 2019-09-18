@@ -3,7 +3,6 @@ module.exports = {
         proxy: {
             '/apis': {
                 target: 'http://192.168.1.101:5000', // 接口域名
-                // target: 'http://50.64.129.46:8030', // 接口域名
                 ws: true, // 是否跨域 
                 changeOrigin: true, // 是否开启跨域
                 pathRewrite: {
