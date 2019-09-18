@@ -47,9 +47,9 @@ import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
-      caseid: sessionStorage.caseid || "",
+      caseid: "",
       showGraph: false,
-      showteamAnaly: sessionStorage.showteamAnaly || false,
+      showteamAnaly: false,
       graph: null,
       nodes: null,
       edgeinfo: null,
@@ -75,10 +75,11 @@ export default {
   watch: {},
   methods: {
     caseSearch() {
-      sessionStorage.caseid = this.caseid;
+      // sessionStorage.caseid = this.caseid;
       // this.$bus.$emit("reload");
       this.initData();
-      sessionStorage.showteamAnaly = true;
+      this.showteamAnaly = true;
+      // sessionStorage.showteamAnaly = true;
       this.value = true;
       // this.$refs.mychild.graphteam = "";
       // this.$refs.mychild.nodesteam = "";
