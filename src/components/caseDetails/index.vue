@@ -35,8 +35,8 @@
         </tbody>
       </table>
     </div>
-    <h3 class="teaminfo" v-if="showteamAnaly">涉案人员</h3>
-    <involvedCase :caseNum="caseid" v-model="value" ref="mychild"></involvedCase>
+    <h3 class="teaminfo" v-if="showteamAnaly&&caseid">涉案人员</h3>
+    <involvedCase :caseNum="caseid" v-model="value" ref="mychild" @reloadId="reloadId2"></involvedCase>
   </div>
 </template>
 <script>
@@ -47,9 +47,9 @@ import dataGraphLine from "./dataGraphLine";
 export default {
   data() {
     return {
-      caseid: "",
+      caseid: sessionStorage.caseid || "",
       showGraph: false,
-      showteamAnaly: false,
+      showteamAnaly: sessionStorage.showteamAnaly || false,
       graph: null,
       nodes: null,
       edgeinfo: null,
@@ -74,9 +74,15 @@ export default {
   mounted() {},
   watch: {},
   methods: {
+    reloadId2(id) {
+      this.caseid = id;
+      console.log(id);
+    },
     caseSearch() {
+      sessionStorage.caseid = this.caseid;
+      this.$bus.$emit("reload");
       this.initData();
-      this.showteamAnaly = true;
+      sessionStorage.showteamAnaly = true;
       this.value = true;
       this.$refs.mychild.initData(this.caseid);
     },

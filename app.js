@@ -14,7 +14,7 @@ app.post('/findTeamAndPersonByRecord', function (req, res, next) {
     // 获取参数
     var query = req.body;
     console.log("post请求：参数", query);
-    if (query.caseid == 123) {
+    if (query.caseid == 1) {
         res.send({
             "result": {
                 "nodes": [{
@@ -308,7 +308,7 @@ app.post('/findTeamAndPersonByRecord', function (req, res, next) {
                 ]
             }
         })
-    } else {
+    } else if (query.caseid == 2) {
         res.send({
             "result": {
                 "nodes": [{
@@ -461,6 +461,112 @@ app.post('/findTeamAndPersonByRecord', function (req, res, next) {
                         "target": "J3202150131160711612"
                     }
                 ]
+            }
+        })
+    } else {
+        res.send({
+            "result": {
+                "nodes": [{
+                    "data": {
+                        "name": "J3202815319052832224",
+                        "time": "20190528",
+                        "type": "case"
+                    },
+                    "id": "J3202815319052832224"
+                }, {
+                    "data": {
+                        "name": "J3202815118121342756",
+                        "time": "20181213",
+                        "type": "case"
+                    },
+                    "id": "J3202815118121342756"
+                }, {
+                    "data": {
+                        "name": "J3202816619010891262",
+                        "time": "20190108",
+                        "type": "case"
+                    },
+                    "id": "J3202816619010891262"
+                }, {
+                    "data": {
+                        "name": "J3202817817090378830",
+                        "time": "20170903",
+                        "type": "case"
+                    },
+                    "id": "J3202817817090378830"
+                }, {
+                    "data": {
+                        "name": "J3202815318120380988",
+                        "time": "20181203",
+                        "type": "case"
+                    },
+                    "id": "J3202815318120380988"
+                }, {
+                    "data": {
+                        "name": "J3202817817090274161",
+                        "time": "20170902",
+                        "type": "case"
+                    },
+                    "id": "J3202817817090274161"
+                }, {
+                    "data": {
+                        "name": "J3202816218022656657",
+                        "time": "20180226",
+                        "type": "case"
+                    },
+                    "id": "J3202816218022656657"
+                }, {
+                    "data": {
+                        "name": "J3202815219071069799",
+                        "time": "20190710",
+                        "type": "case"
+                    },
+                    "id": "J3202815219071069799"
+                }, {
+                    "data": {
+                        "name": "J3202816218010386256",
+                        "time": "20180103",
+                        "type": "case"
+                    },
+                    "id": "J3202816218010386256"
+                }, {
+                    "data": {
+                        "name": "J3202815318110948827",
+                        "time": "20181109",
+                        "type": "case"
+                    },
+                    "id": "J3202815318110948827"
+                }, {
+                    "data": {
+                        "name": "J3202815319020649976",
+                        "time": "20190206",
+                        "type": "case"
+                    },
+                    "id": "J3202815319020649976"
+                }, {
+                    "data": {
+                        "name": "J3202815317092617565",
+                        "time": "20170926",
+                        "type": "case"
+                    },
+                    "id": "J3202815317092617565"
+                }],
+                "edges": [{
+                    "source": "J3202815319052832224",
+                    "target": "J3202815118121342756"
+                }, {
+                    "source": "J3202815319052832224",
+                    "target": "J3202816619010891262"
+                }, {
+                    "source": "J3202817817090378830",
+                    "target": "J3202815118121342756"
+                }, {
+                    "source": "J3202817817090378830",
+                    "target": "J3202815318120380988"
+                }, {
+                    "source": "J3202817817090378830",
+                    "target": "J3202817817090274161"
+                }]
             }
         })
     }

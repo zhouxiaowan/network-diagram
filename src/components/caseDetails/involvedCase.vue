@@ -66,6 +66,7 @@ export default {
       });
     },
     initData(caseid) {
+      this.$emit("reloadId", caseid);
       this.$axios
         .post("/apis/findTeamAndPersonByRecord", {
           caseid: caseid
