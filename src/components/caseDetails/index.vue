@@ -80,7 +80,7 @@ export default {
     },
     caseSearch() {
       sessionStorage.caseid = this.caseid;
-      this.$bus.$emit("reload");
+      this.$bus.$emit("reload"); //用刷新来解决问题，但是有点坑
       this.initData();
       sessionStorage.showteamAnaly = true;
       this.value = true;
