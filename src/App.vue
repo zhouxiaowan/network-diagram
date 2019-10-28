@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="graph">
-      <router-view v-if="isRouterAlive"></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -10,24 +10,9 @@
 export default {
   name: "app",
   data() {
-    return {
-      isRouterAlive: true
-    };
+    return {};
   },
-  components: {},
-  mounted() {
-    this.$bus.$on("reload", () => {
-      this.reload();
-    });
-  },
-  methods: {
-    reload(caseid) {
-      this.isRouterAlive = false;
-      this.$nextTick(() => {
-        this.isRouterAlive = true;
-      });
-    }
-  }
+  components: {}
 };
 </script>
 

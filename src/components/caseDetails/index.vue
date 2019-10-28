@@ -36,7 +36,7 @@
       </table>
     </div>
     <h3 class="teaminfo" v-if="showteamAnaly&&caseid">涉案人员</h3>
-    <involvedCase :caseNum="caseid" v-model="value" ref="mychild" @reloadId="reloadId2"></involvedCase>
+    <involvedCase :caseNum="caseid" v-model="value" ref="mychild"></involvedCase>
   </div>
 </template>
 <script>
@@ -74,15 +74,9 @@ export default {
   mounted() {},
   watch: {},
   methods: {
-    reloadId2(id) {
-      this.caseid = id;
-      console.log(id);
-    },
     caseSearch() {
-      sessionStorage.caseid = this.caseid;
-      this.$bus.$emit("reload"); //用刷新来解决问题，但是有点坑
       this.initData();
-      sessionStorage.showteamAnaly = true;
+      this.showteamAnaly = true;
       this.value = true;
       this.$refs.mychild.initData(this.caseid);
     },
