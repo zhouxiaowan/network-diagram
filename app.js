@@ -21,6 +21,7 @@ app.post('/findTeamAndPersonByRecord', function (req, res, next) {
             "result": {
                 "nodes": [{
                     "data": {
+                        "id": "J3202815319053000001",
                         "address": "江阴市新华三村21幢202室",
                         "rname": "许圆",
                         "name": "J3202815319053000001",
@@ -29,7 +30,7 @@ app.post('/findTeamAndPersonByRecord', function (req, res, next) {
                         "time": "20190530",
                         "dname": "827325,826368                     ",
                         "categories": 0,
-                        "type": "case",
+                        "type": "person",
                         "content": "2019年5月22日11时31分，许圆（微信号：Asura27）在江阴市新华三村21幢202室家中接到+8616529871105催还贷款的电话，并向许圆发送了一个财务工作人员的微信号（微信号：gb55774），许圆加对方微信后收到一个收款二维码，后许圆通过微信绑定的中国工商银行卡（卡号：6222021103011656486）以微信扫码的方式向对方转账人民币2500元，至17时许，其发现微信被拉黑，对方电话不接。5月25日许，许圆注册平安易贷APP，并在该平台链接上联系客服，客服以交工本费为由向其发送了一个中国农业银行账号（账户：6230520600062740175，账户名：黄武），许圆通过微信绑定的中国工商银行卡以微信转账的方式向对方转账人民币1500元，后该客服又以账户被冻结为由要求许圆继续转账时，遂发现被骗。损失价值：人民币4000余元。"
                     },
                     "id": "J3202815319053000001"
@@ -440,283 +441,204 @@ app.get('/findPersonTeamByIdCard', function (req, res) {
         "result": {
             "nodes": [{
                     "data": {
-                        "name": "刘东升",
+                        "name": "张正",
                         "categories": 0,
                         "type": "person"
                     },
-                    "id": "320281197801238577"
+                    "id": "zhangzheng"
                 },
                 {
                     "data": {
-                        "name": "江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
+                        "name": "J00003c8b",
+                        "categories": 1,
+                        "type": "case"
+                    },
+                    "id": "J00003c8b"
+                },
+                {
+                    "data": {
+                        "name": "V00413b8e",
+                        "categories": 1,
+                        "type": "case"
+                    },
+                    "id": "V00413b8e"
+                },
+                {
+                    "data": {
+                        "name": "K01420v6l",
+                        "categories": 1,
+                        "type": "case"
+                    },
+                    "id": "K01420v6l"
+                },
+                {
+                    "data": {
+                        "name": "13210205415",
+                        "categories": 1,
+                        "type": "tel"
+                    },
+                    "id": "13210205415"
+                },
+                {
+                    "data": {
+                        "name": "北京市海淀区",
                         "categories": 1,
                         "type": "address"
                     },
-                    "id": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501"
+                    "id": "beijingshihaidianqu"
                 },
                 {
                     "data": {
-                        "name": "江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
+                        "name": "炼油厂",
                         "categories": 1,
-                        "type": "address"
+                        "type": "factory"
                     },
-                    "id": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501"
+                    "id": "lianyouchang"
                 },
                 {
                     "data": {
-                        "name": "山东省济南市万科中心12楼",
-                        "categories": 1,
-                        "type": "CM"
-                    },
-                    "id": "CM:山东省济南市万科中心12楼"
-                },
-                {
-                    "data": {
-                        "name": "J3202150107085274665",
-                        "categories": "1",
-                        "type": "case"
-                    },
-                    "id": "J3202150107085274665"
-                },
-                {
-                    "data": {
-                        "name": "J3202150101180933051",
-                        "categories": "1",
-                        "type": "case"
-                    },
-                    "id": "J3202150101180933051"
-                },
-                {
-                    "data": {
-                        "name": "J3202150131160711612",
-                        "categories": "1",
-                        "type": "case"
-                    },
-                    "id": "J3202150131160711612"
-                },
-                {
-                    "data": {
-                        "name": "J3202150211205416649",
+                        "name": "D12503ve4",
                         "categories": 2,
                         "type": "case"
                     },
-                    "id": "J3202150211205416649"
+                    "id": "D12503ve4"
                 },
                 {
                     "data": {
-                        "name": "J3202150521142720623",
+                        "name": "k20325v8g",
                         "categories": 2,
                         "type": "case"
                     },
-                    "id": "J3202150521142720623"
+                    "id": "k20325v8g"
                 },
                 {
                     "data": {
-                        "name": "J3202150514110260850",
+                        "name": "J10020e5f",
                         "categories": 2,
                         "type": "case"
                     },
-                    "id": "J3202150514110260850"
+                    "id": "J10020e5f"
                 },
                 {
                     "data": {
                         "score": 0.37994896225522484,
-                        "name": "居君彪",
-                        "categories": 2,
+                        "name": "王一铭",
+                        "categories": 3,
                         "type": "person"
                     },
-                    "id": "320281195509062409"
+                    "id": "wangyiming"
                 },
                 {
                     "data": {
                         "score": 0.19737532022490403,
-                        "name": "王少波",
+                        "name": "陈思佳",
                         "categories": 3,
                         "type": "person"
                     },
-                    "id": "320281198803027655"
+                    "id": "chensijia"
                 },
                 {
                     "data": {
                         "score": 0.8853516482022624,
-                        "name": "周峰",
-                        "categories": 2,
+                        "name": "刘宇明",
+                        "categories": 3,
                         "type": "person"
                     },
-                    "id": "320281198011259607"
+                    "id": "liuyuming"
                 },
                 {
                     "data": {
-                        "name": "江阴天胜康食品贸易有限公司",
-                        "categories": 2,
-                        "type": "serplace"
+                        "name": "张昌胜",
+                        "categories": 3,
+                        "type": "person"
                     },
-                    "id": "serplace:江阴天胜康食品贸易有限公司"
+                    "id": "zhangchangsheng"
                 },
                 {
                     "data": {
                         "score": 0.1325487883908784,
-                        "name": "陈林燕",
+                        "name": "吴利达",
                         "categories": 3,
                         "type": "person"
                     },
-                    "id": "320281199203045567"
-                },
-                {
-                    "data": {
-                        "score": 0.19737532022490403,
-                        "name": "宋惠新",
-                        "categories": 3,
-                        "type": "person"
-                    },
-                    "id": "320281197909039988"
-                },
-                {
-                    "data": {
-                        "score": 0.19737532022490403,
-                        "name": "任静霞",
-                        "categories": 3,
-                        "type": "person"
-                    },
-                    "id": "320281197809152377"
-                },
-                {
-                    "data": {
-                        "score": 0.8086365140907334,
-                        "name": "陈晔",
-                        "categories": 3,
-                        "type": "person"
-                    },
-                    "id": "320281198312250960"
-                },
-                {
-                    "data": {
-                        "name": "山东省济南市",
-                        "categories": 2,
-                        "type": "CM"
-                    },
-                    "id": "CM:山东省济南市"
-                },
-                {
-                    "data": {
-                        "name": "山东省济南市万科中心11楼",
-                        "categories": 2,
-                        "type": "CM"
-                    },
-                    "id": "CM:山东省济南市万科中心11楼"
+                    "id": "wulida"
                 }
             ],
             "edges": [{
-                    "source": "320281197801238577",
-                    "target": "J3202150107085274665"
+                    "source": "zhangzheng",
+                    "target": "J00003c8b"
                 },
                 {
-                    "source": "320281197801238577",
-                    "target": "J3202150101180933051"
+                    "source": "zhangzheng",
+                    "target": "V00413b8e"
                 },
                 {
-                    "source": "320281197801238577",
-                    "target": "J3202150131160711612"
+                    "source": "zhangzheng",
+                    "target": "K01420v6l"
                 },
                 {
-                    "source": "J3202150107085274665",
-                    "target": "320281195509062409"
+                    "source": "zhangzheng",
+                    "target": "13210205415"
                 },
                 {
-                    "source": "J3202150131160711612",
-                    "target": "J3202150514110260850"
+                    "source": "zhangzheng",
+                    "target": "beijingshihaidianqu"
                 },
                 {
-                    "source": "J3202150101180933051",
-                    "target": "320281198011259607"
+                    "source": "zhangzheng",
+                    "target": "lianyouchang"
                 },
                 {
-                    "source": "address:江苏省无锡市江阴市黄山路大桥一村1号楼3单元501",
-                    "target": "320281198011259607"
+                    "source": "J00003c8b",
+                    "target": "wangyiming"
                 },
                 {
-                    "source": "serplace:江阴天胜康食品贸易有限公司",
-                    "target": "320281198011259607"
+                    "source": "J00003c8b",
+                    "target": "D12503ve4"
                 },
                 {
-                    "source": "J3202150131160711612",
-                    "target": "J3202150211205416649"
+                    "source": "V00413b8e",
+                    "target": "D12503ve4"
                 },
                 {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150211205416649"
+                    "source": "V00413b8e",
+                    "target": "k20325v8g"
                 },
                 {
-                    "source": "J3202150101180933051",
-                    "target": "J3202150211205416649"
+                    "source": "K01420v6l",
+                    "target": "J10020e5f"
                 },
                 {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150131160711612"
+                    "source": "13210205415",
+                    "target": "wulida"
                 },
                 {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150101180933051"
+                    "source": "beijingshihaidianqu",
+                    "target": "zhangchangsheng"
                 },
                 {
-                    "source": "J3202150107085274665",
-                    "target": "J3202150211205416649"
+                    "source": "lianyouchang",
+                    "target": "wulida"
                 },
                 {
-                    "source": "J3202150107085274665",
-                    "target": "J3202150521142720623"
+                    "source": "D12503ve4",
+                    "target": "chensijia"
                 },
                 {
-                    "source": "J3202150131160711612",
-                    "target": "320281197809152377"
+                    "source": "k20325v8g",
+                    "target": "liuyuming"
                 },
                 {
-                    "source": "J3202150131160711612",
-                    "target": "J3202150514110260850"
+                    "source": "k20325v8g",
+                    "target": "wulida"
                 },
                 {
-                    "source": "CM:山东省济南市万科中心12楼",
-                    "target": "CM:山东省济南市"
+                    "source": "J10020e5f",
+                    "target": "liuyuming"
                 },
                 {
-                    "source": "CM:山东省济南市",
-                    "target": "320281198312250960"
-                },
-                {
-                    "source": "CM:山东省济南市万科中心12楼",
-                    "target": "CM:山东省济南市万科中心11楼"
-                },
-                {
-                    "source": "CM:山东省济南市万科中心11楼",
-                    "target": "320281198312250960"
-                },
-                {
-                    "source": "J3202150131160711612",
-                    "target": "J3202150211205416649"
-                },
-                {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150211205416649"
-                },
-                {
-                    "source": "J3202150101180933051",
-                    "target": "J3202150211205416649"
-                },
-                {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150131160711612"
-                },
-                {
-                    "source": "J3202150521142720623",
-                    "target": "J3202150101180933051"
-                },
-                {
-                    "source": "J3202150107085274665",
-                    "target": "J3202150211205416649"
-                },
-                {
-                    "source": "J3202150107085274665",
-                    "target": "J3202150521142720623"
+                    "source": "J10020e5f",
+                    "target": "zhangchangsheng"
                 }
             ]
         }

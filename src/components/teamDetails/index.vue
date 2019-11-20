@@ -102,7 +102,7 @@ export default {
       this.onChange();
       this.initDefaultListeners();
     },
-    // 线的样式规则
+    // 线的样式规则,增加虚线显示
     initDefaultEage() {
       this.ogma.getEdges().forEach(edg => {
         if (edg.getData("type")) {

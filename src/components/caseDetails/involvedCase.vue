@@ -5,6 +5,15 @@
       <div>操作节点:{{sigleNode}}</div>
       <div class="teamAnaly" @click="teamAnaly">跳转到该节点团伙分析页面</div>
     </div>
+    <el-table :data="nodesteam" border style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
+      <el-table-column prop="id" label="警情" sortable width="180"></el-table-column>
+      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+      <el-table-column prop="idcard" label="公民身份号码" width="180"></el-table-column>
+      <el-table-column prop="CM" label="户籍地"></el-table-column>
+      <el-table-column prop="serplace" label="服务处所" width="180"></el-table-column>
+      <el-table-column prop="contactel" label="联系方式" width="180"></el-table-column>
+      <el-table-column prop="nowplace" label="现住地"></el-table-column>
+    </el-table>
     <div class="table-info">
       <table class="incorporate" cellspacing="0" cellpadding="0" border="0">
         <thead>
@@ -50,6 +59,16 @@ export default {
         duration: 300, // Duration of the animation
         nodeDistance: 15, // Number of pixels that separate nodes horizontally in the layout.
         levelDistance: 50 // Number of pixels between each layer in the layout.
+      },
+      pulse_options: {
+        number: 5,
+        duration: 1700,
+        interval: 600,
+        startColor: "inherit",
+        endColor: "rgb(113,199,183)",
+        width: 5,
+        startRatio: 1,
+        endRatio: 5
       }
     };
   },
@@ -73,10 +92,13 @@ export default {
         .then(res => {
           this.graphteam = res.data.result;
           this.nodesteam = res.data.result.nodes;
+          console.log("this.nodesteam:", this.nodesteam);
           this.$emit("input", false);
         })
         .then(res => {
           this.initOgma();
+          console.log("11111", this.ogma.getNode("J3202815319053000001"));
+          this.ogma.getNode("J3202815319053000001").pulse(pulse_options);
         })
         .catch(err => {});
     },

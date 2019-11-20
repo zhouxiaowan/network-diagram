@@ -2,7 +2,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/apis': {
-                target: 'http://10.9.74.35:5000', // 接口域名
+                target: 'http://10.18.17.169:5000', // 接口域名
                 ws: true, // 是否跨域 
                 changeOrigin: true, // 是否开启跨域
                 pathRewrite: {
